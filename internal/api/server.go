@@ -30,10 +30,17 @@ type Server struct {
 	// means no bound. When it is exceeded the fact is added and nothing is
 	// superseded.
 	resolveBudget time.Duration
+	// slots bounds resolutions in flight. A resolution that outlives its budget
+	// keeps its slot until it finishes, so repeated timeouts cannot pile up work.
+	slots chan struct{}
 }
 
 // SetResolveBudget sets how long a write may wait for conflict resolution.
 func (s *Server) SetResolveBudget(d time.Duration) { s.resolveBudget = d }
+
+// SetMaxConcurrentResolutions bounds resolutions in flight when a budget is set.
+// Call it before serving.
+func (s *Server) SetMaxConcurrentResolutions(n int) { s.slots = make(chan struct{}, n) }
 
 func (s *Server) lockUser(ctx context.Context, tenant, user string) (func(), error) {
 	return s.writes.lock(ctx, tenant+"\x00"+user)
@@ -43,10 +50,20 @@ func (s *Server) resolveWithin(ctx context.Context, content string, facts []conf
 	if s.resolveBudget <= 0 {
 		return s.engine.Resolve(content, facts)
 	}
-	done := make(chan conflict.Decision, 1)
-	go func() { done <- s.engine.Resolve(content, facts) }()
 	timer := time.NewTimer(s.resolveBudget)
 	defer timer.Stop()
+	select {
+	case s.slots <- struct{}{}:
+	case <-timer.C:
+		return conflict.Decision{Action: conflict.ActionAdd, Reason: "resolution capacity exceeded the time budget, keeping both facts"}
+	case <-ctx.Done():
+		return conflict.Decision{Action: conflict.ActionAdd, Reason: "request ended during resolution, keeping both facts"}
+	}
+	done := make(chan conflict.Decision, 1)
+	go func() {
+		defer func() { <-s.slots }()
+		done <- s.engine.Resolve(content, facts)
+	}()
 	select {
 	case d := <-done:
 		return d
@@ -57,9 +74,11 @@ func (s *Server) resolveWithin(ctx context.Context, content string, facts []conf
 	}
 }
 
+const defaultResolutions = 8
+
 // New builds a Server. auth maps api-key → tenant-id.
 func New(s store.Store, e *conflict.Engine, auth map[string]string) *Server {
-	return &Server{store: s, engine: e, auth: auth}
+	return &Server{store: s, engine: e, auth: auth, slots: make(chan struct{}, defaultResolutions)}
 }
 
 // Handler returns the root http.Handler with all routes mounted.
@@ -117,14 +136,15 @@ func (s *Server) remember(w http.ResponseWriter, r *http.Request, tenant string)
 
 	ctx := r.Context()
 
+	unlock, err := s.lockUser(ctx, tenant, user)
+	if err != nil {
+		writeErr(w, http.StatusServiceUnavailable, "request ended while waiting for a concurrent write")
+		return
+	}
+	defer unlock()
+
 	// conflict-lens: compare against existing active facts in the same category.
 	if resolve {
-		unlock, err := s.lockUser(ctx, tenant, user)
-		if err != nil {
-			writeErr(w, http.StatusServiceUnavailable, "request ended while waiting for a concurrent write")
-			return
-		}
-		defer unlock()
 		existing, err := s.store.ActiveByCategory(ctx, tenant, user, category)
 		if err != nil {
 			writeErr(w, http.StatusInternalServerError, "lookup failed")
@@ -146,22 +166,23 @@ func (s *Server) remember(w http.ResponseWriter, r *http.Request, tenant string)
 			return
 
 		case conflict.ActionUpdate:
-			id, err := s.insert(ctx, tenant, user, sanitize(req.Content), category, confidence, req.Metadata)
-			if err != nil {
-				writeErr(w, http.StatusInternalServerError, "store failed")
-				return
-			}
-			if err := s.store.Supersede(ctx, tenant, decision.TargetID, id); errors.Is(err, store.ErrNotActive) {
+			m := newMemory(tenant, user, sanitize(req.Content), category, confidence, req.Metadata)
+			err := s.store.Replace(ctx, m, decision.TargetID)
+			if errors.Is(err, store.ErrNotActive) || errors.Is(err, store.ErrNotFound) {
+				if err := s.store.Insert(ctx, m); err != nil {
+					writeErr(w, http.StatusInternalServerError, "store failed")
+					return
+				}
 				writeJSON(w, http.StatusCreated, rememberResp{
-					ID: id, Action: "add", Reason: "the candidate changed during resolution, keeping both facts",
+					ID: m.ID, Action: "add", Reason: "the candidate changed during resolution, keeping both facts",
 				})
 				return
 			} else if err != nil {
-				writeErr(w, http.StatusInternalServerError, "supersede failed")
+				writeErr(w, http.StatusInternalServerError, "store failed")
 				return
 			}
 			writeJSON(w, http.StatusCreated, rememberResp{
-				ID: id, Action: "update", SupersededID: decision.TargetID,
+				ID: m.ID, Action: "update", SupersededID: decision.TargetID,
 				Similarity: decision.Similarity, Reason: decision.Reason,
 			})
 			return
@@ -248,22 +269,19 @@ func (s *Server) update(w http.ResponseWriter, r *http.Request, tenant string) {
 	if req.Confidence != nil {
 		confidence = *req.Confidence
 	}
-	newID, err := s.insert(r.Context(), tenant, old.UserID, sanitize(req.Content),
-		orDefault(req.Category, old.Category), confidence, nil)
-	if err != nil {
+	m := newMemory(tenant, old.UserID, sanitize(req.Content), orDefault(req.Category, old.Category), confidence, nil)
+	if err := s.store.Replace(r.Context(), m, oldID); errors.Is(err, store.ErrNotActive) {
+		writeErr(w, http.StatusConflict, "memory was already superseded")
+		return
+	} else if errors.Is(err, store.ErrNotFound) {
+		writeErr(w, http.StatusNotFound, "memory not found")
+		return
+	} else if err != nil {
 		writeErr(w, http.StatusInternalServerError, "store failed")
 		return
 	}
-	if err := s.store.Supersede(r.Context(), tenant, oldID, newID); errors.Is(err, store.ErrNotActive) {
-		_, _ = s.store.Delete(r.Context(), tenant, newID)
-		writeErr(w, http.StatusConflict, "memory was already superseded")
-		return
-	} else if err != nil {
-		writeErr(w, http.StatusInternalServerError, "supersede failed")
-		return
-	}
 	writeJSON(w, http.StatusOK, rememberResp{
-		ID: newID, Action: "update", SupersededID: oldID, Reason: "explicit update",
+		ID: m.ID, Action: "update", SupersededID: oldID, Reason: "explicit update",
 	})
 }
 
@@ -323,13 +341,17 @@ func (s *Server) purgeUser(w http.ResponseWriter, r *http.Request, tenant string
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
-func (s *Server) insert(ctx context.Context, tenant, user, content, category string, confidence float64, meta map[string]string) (string, error) {
+func newMemory(tenant, user, content, category string, confidence float64, meta map[string]string) store.Memory {
 	now := time.Now()
-	m := store.Memory{
+	return store.Memory{
 		ID: newID(), TenantID: tenant, UserID: user, Content: content,
 		Category: category, Confidence: confidence, Metadata: meta,
 		CreatedAt: now, LastAccessed: now,
 	}
+}
+
+func (s *Server) insert(ctx context.Context, tenant, user, content, category string, confidence float64, meta map[string]string) (string, error) {
+	m := newMemory(tenant, user, content, category, confidence, meta)
 	return m.ID, s.store.Insert(ctx, m)
 }
 

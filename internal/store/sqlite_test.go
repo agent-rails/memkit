@@ -276,3 +276,57 @@ func TestSupersedeIsConditionalOnTheOldFactBeingActive(t *testing.T) {
 		t.Fatalf("a missing fact must report ErrNotFound, got %v", err)
 	}
 }
+
+func newMemory(id, content string) Memory {
+	now := time.Now()
+	return Memory{ID: id, TenantID: "t", UserID: "u", Content: content, Category: "c", Confidence: 1, CreatedAt: now, LastAccessed: now}
+}
+
+func TestReplaceInsertsAndSupersedesAtomically(t *testing.T) {
+	s := mustOpen(t)
+	ctx := context.Background()
+	insert(t, s, "old", "city is Denver", time.Now())
+	if err := s.Replace(ctx, newMemory("new", "city is Boston"), "old"); err != nil {
+		t.Fatal(err)
+	}
+	old, _ := s.Get(ctx, "t", "old")
+	fresh, err := s.Get(ctx, "t", "new")
+	if err != nil || old.SupersededBy != "new" || fresh.SupersededBy != "" {
+		t.Fatalf("want old superseded by new and new active, got old=%+v new=%+v err=%v", old, fresh, err)
+	}
+	got, _ := s.Search(ctx, "t", "u", "city", SearchOpts{})
+	if len(got) != 1 || got[0].ID != "new" {
+		t.Fatalf("only the new fact may be searchable, got %+v", got)
+	}
+}
+
+func TestReplaceOfAnInactiveFactInsertsNothing(t *testing.T) {
+	s := mustOpen(t)
+	ctx := context.Background()
+	insert(t, s, "old", "city is Denver", time.Now())
+	insert(t, s, "mid", "city is Austin", time.Now())
+	if err := s.Supersede(ctx, "t", "old", "mid"); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Replace(ctx, newMemory("new", "city is Boston"), "old"); !errors.Is(err, ErrNotActive) {
+		t.Fatalf("want ErrNotActive, got %v", err)
+	}
+	if _, err := s.Get(ctx, "t", "new"); !errors.Is(err, ErrNotFound) {
+		t.Fatalf("a failed replace must not leave the new fact behind, got %v", err)
+	}
+	got, _ := s.Search(ctx, "t", "u", "Boston", SearchOpts{})
+	if len(got) != 0 {
+		t.Fatalf("a failed replace must not leave a searchable fact, got %+v", got)
+	}
+}
+
+func TestReplaceOfAMissingFactInsertsNothing(t *testing.T) {
+	s := mustOpen(t)
+	ctx := context.Background()
+	if err := s.Replace(ctx, newMemory("new", "city is Boston"), "ghost"); !errors.Is(err, ErrNotFound) {
+		t.Fatalf("want ErrNotFound, got %v", err)
+	}
+	if _, err := s.Get(ctx, "t", "new"); !errors.Is(err, ErrNotFound) {
+		t.Fatalf("a failed replace must not leave the new fact behind, got %v", err)
+	}
+}

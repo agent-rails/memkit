@@ -358,3 +358,74 @@ func TestRememberStopsWaitingForAModelBeyondTheBudget(t *testing.T) {
 		t.Fatalf("a timed out resolution must add and supersede nothing, got %d %v", code, out)
 	}
 }
+
+func TestPlainWriteAlsoWaitsForAnInFlightResolutionOfTheSameUser(t *testing.T) {
+	g := &gatedResolver{entered: make(chan struct{}, 1), release: make(chan struct{})}
+	h := serverWithResolver(t, g)
+	do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	remembered := make(chan struct{})
+	go func() {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at OpenAI as a backend engineer"})
+		close(remembered)
+	}()
+	<-g.entered
+	plain := make(chan struct{})
+	go func() {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User likes tea", "resolve_conflicts": false})
+		close(plain)
+	}()
+	select {
+	case <-plain:
+		t.Fatal("a write that skips conflict resolution must still wait for the user's in-flight resolution")
+	case <-time.After(150 * time.Millisecond):
+	}
+	close(g.release)
+	<-remembered
+	select {
+	case <-plain:
+	case <-time.After(2 * time.Second):
+		t.Fatal("the plain write must proceed once resolution finishes")
+	}
+}
+
+type countingSlow struct {
+	calls int32
+	delay time.Duration
+}
+
+func (c *countingSlow) Resolve(string, conflict.Fact) (conflict.Action, string, error) {
+	atomic.AddInt32(&c.calls, 1)
+	time.Sleep(c.delay)
+	return conflict.ActionUpdate, "slow", nil
+}
+
+func TestAbandonedResolutionsStillCountAgainstTheConcurrencyBound(t *testing.T) {
+	st, err := store.OpenSQLite(":memory:")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { st.Close() })
+	r := &countingSlow{delay: 400 * time.Millisecond}
+	e := conflict.NewEngine()
+	e.Resolver = r
+	srv := New(st, e, map[string]string{"k": "acme"})
+	srv.SetResolveBudget(40 * time.Millisecond)
+	srv.SetMaxConcurrentResolutions(1)
+	h := srv.Handler()
+	for _, u := range []string{"a", "b"} {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": u, "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	}
+	start := time.Now()
+	_, first := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "a", "content": "User works at OpenAI as a backend engineer"})
+	_, second := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "b", "content": "User works at OpenAI as a backend engineer"})
+	if time.Since(start) > 300*time.Millisecond {
+		t.Fatalf("both writes must return within their budgets, took %s", time.Since(start))
+	}
+	if first["action"] != "add" || second["action"] != "add" {
+		t.Fatalf("both timed out writes must add, got %v and %v", first["action"], second["action"])
+	}
+	time.Sleep(100 * time.Millisecond)
+	if n := atomic.LoadInt32(&r.calls); n != 1 {
+		t.Fatalf("the second write must not start a model call while the abandoned one still runs, got %d calls", n)
+	}
+}
