@@ -145,6 +145,9 @@ func (s *Server) search(w http.ResponseWriter, r *http.Request, tenant string) {
 		writeErr(w, http.StatusInternalServerError, "search failed")
 		return
 	}
+	if results == nil {
+		results = []store.Scored{}
+	}
 	for _, m := range results {
 		_ = s.store.Touch(r.Context(), tenant, m.ID)
 	}

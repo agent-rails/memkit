@@ -162,3 +162,18 @@ func TestTenantIsolation(t *testing.T) {
 		t.Fatalf("tenant isolation breach: other tenant saw %d memories", n)
 	}
 }
+
+func TestSearchEmptyResultIsAnArrayNotNull(t *testing.T) {
+	h := newTestServer(t)
+	code, out := do(t, h, "GET", "/v1/memories/search?user_id=nobody&q=anything", nil)
+	if code != http.StatusOK {
+		t.Fatalf("status %d", code)
+	}
+	memories, ok := out["memories"].([]any)
+	if !ok {
+		t.Fatalf("memories must be a JSON array when empty, got %T (%v)", out["memories"], out["memories"])
+	}
+	if len(memories) != 0 || out["count"] != float64(0) {
+		t.Fatalf("want empty array and count 0, got %v count=%v", memories, out["count"])
+	}
+}
