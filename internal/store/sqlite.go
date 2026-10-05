@@ -8,6 +8,7 @@ import (
 	"math"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	_ "modernc.org/sqlite" // pure-Go driver, no CGO → single static binary
 )
@@ -358,28 +359,31 @@ func sortByScoreDesc(s []Scored) {
 
 // escapeFTS turns a free-text query into a safe FTS5 MATCH expression: an exact
 // phrase OR'd with prefix tokens, so partial words still match.
+//
+// The index uses the `porter ascii` tokenizer, which treats ASCII letters and
+// digits and every non-ASCII character as token characters and everything else as
+// a separator. The query is split the same way, and only on the ASCII space the
+// mapping produces (not on Unicode whitespace, which the tokenizer keeps inside a
+// token), so a query token is exactly an indexed token. That removes every FTS5 operator character ('"', '*', '-', '^',
+// '(', ')', ':', '+', ...) and every punctuation mark typed in a question. Each
+// token is quoted so the bare words AND, OR, NOT and NEAR are searched as text,
+// not parsed as operators.
 func escapeFTS(q string) string {
 	clean := strings.Map(func(r rune) rune {
-		switch r {
-		// CORRECTED (live smoke test, 2026-08-12): a bareword FTS5 token
-		// containing '-' is a syntax error unless quoted -- any query with
-		// a hyphenated word ("on-call", "PR-4821") returned 500 instead of
-		// results. Handled the same way as the existing quote/asterisk
-		// characters: split into separate words rather than one token.
-		case '"', '*', '\'', '-':
-			return ' '
+		if r >= utf8.RuneSelf || r >= 'a' && r <= 'z' || r >= 'A' && r <= 'Z' || r >= '0' && r <= '9' {
+			return r
 		}
-		return r
+		return ' '
 	}, q)
-	fields := strings.Fields(clean)
+	fields := strings.FieldsFunc(clean, func(r rune) bool { return r == ' ' })
 	if len(fields) == 0 {
 		return `""`
 	}
 	prefixed := make([]string, len(fields))
 	for i, f := range fields {
-		prefixed[i] = f + "*"
+		prefixed[i] = `"` + f + `"*`
 	}
-	return fmt.Sprintf(`"%s" OR %s`, strings.TrimSpace(clean), strings.Join(prefixed, " OR "))
+	return fmt.Sprintf(`"%s" OR %s`, strings.Join(fields, " "), strings.Join(prefixed, " OR "))
 }
 
 func orEmpty(m map[string]string) map[string]string {
