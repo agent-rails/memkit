@@ -37,7 +37,12 @@ func main() {
 		log.Fatalf("conflict engine: %v", err)
 	}
 	log.Print(resolverDesc)
+	budget, err := resolveBudget(os.Getenv)
+	if err != nil {
+		log.Fatalf("conflict engine: %v", err)
+	}
 	srv := api.New(st, engine, auth)
+	srv.SetResolveBudget(budget)
 
 	// Background consolidation: prune archived facts past retention.
 	rootCtx, cancelRoot := context.WithCancel(context.Background())

@@ -351,13 +351,102 @@ func (failingJudge) Resolve(string, conflict.Fact) (conflict.Action, string, err
 	return conflict.ActionUpdate, "ignored", errors.New("model down")
 }
 
-func TestPairOnly_JudgeFailureAddsInsteadOfFailing(t *testing.T) {
-	act, reason, err := PairOnly{Judge: failingJudge{}}.Resolve("n", conflict.Fact{ID: "1", Content: "e"})
-	if err != nil || act != conflict.ActionAdd || !strings.Contains(reason, "keeping both") {
-		t.Fatalf("a failing judge must resolve to add with no error, got %s %q %v", act, reason, err)
+func TestPairOnly_JudgeFailureIsReturnedSoTheEngineCanStop(t *testing.T) {
+	_, _, err := PairOnly{Judge: failingJudge{}}.Resolve("n", conflict.Fact{ID: "1", Content: "e"})
+	if err == nil {
+		t.Fatal("the failure must be returned, not turned into a verdict")
 	}
 }
 
+type scriptedJudge struct {
+	calls   []string
+	verdict func(candidate conflict.Fact) (conflict.Action, error)
+}
+
+func (s *scriptedJudge) Resolve(_ string, c conflict.Fact) (conflict.Action, string, error) {
+	s.calls = append(s.calls, c.ID)
+	act, err := s.verdict(c)
+	return act, "scripted", err
+}
+
+func similarFacts() []conflict.Fact {
+	return []conflict.Fact{
+		{ID: "other", Content: "Nadia Bellweather works at Harbor Partners"},
+		{ID: "mine", Content: "Marisol Bellweather works at Cinder Labs"},
+		{ID: "third", Content: "Idris Okonkwo works at Harbor Partners"},
+	}
+}
+
+func TestEngine_JudgeFailureOnAnyCandidateStopsTheWalkAndAdds(t *testing.T) {
+	order := []string{"other", "mine", "third"}
+	for failAt := 0; failAt < len(order); failAt++ {
+		j := &scriptedJudge{}
+		j.verdict = func(c conflict.Fact) (conflict.Action, error) {
+			for i, id := range order {
+				if id != c.ID {
+					continue
+				}
+				switch {
+				case i < failAt:
+					return conflict.ActionAdd, nil
+				case i == failAt:
+					return conflict.ActionAdd, errors.New("down")
+				}
+			}
+			return conflict.ActionUpdate, nil
+		}
+		e := conflict.NewEngine()
+		e.ConflictThreshold = 0.1
+		e.MaxCandidates = 5
+		e.Resolver = PairOnly{Judge: j}
+		d := e.Resolve("Marisol Bellweather works at Harbor Partners", similarFacts())
+		if d.Action != conflict.ActionAdd || d.TargetID != "" {
+			t.Fatalf("failure at position %d must add and supersede nothing, got %+v", failAt, d)
+		}
+		if len(j.calls) != failAt+1 {
+			t.Fatalf("failure at position %d must stop the walk, got calls %v", failAt, j.calls)
+		}
+	}
+}
+
+func TestEngine_FailureAfterAnUpdateVerdictCannotUndoIt(t *testing.T) {
+	j := &scriptedJudge{verdict: func(c conflict.Fact) (conflict.Action, error) {
+		if c.ID == "other" {
+			return conflict.ActionUpdate, nil
+		}
+		return conflict.ActionAdd, errors.New("down")
+	}}
+	e := conflict.NewEngine()
+	e.ConflictThreshold = 0.1
+	e.MaxCandidates = 5
+	e.Resolver = PairOnly{Judge: j}
+	d := e.Resolve("Marisol Bellweather works at Harbor Partners", similarFacts())
+	if d.Action != conflict.ActionUpdate || len(j.calls) != 1 {
+		t.Fatalf("a verdict on the first candidate is final and later candidates are not consulted, got %+v calls=%v", d, j.calls)
+	}
+}
+
+func TestPromptText_StripsFormatControlCharacters(t *testing.T) {
+	got := promptText("Alice‮ works​ at⁦ Acme‍!")
+	for _, r := range []rune{'‮', '​', '⁦', '‍'} {
+		if strings.ContainsRune(got, r) {
+			t.Fatalf("format character %U must be removed, got %q", r, got)
+		}
+	}
+	if !strings.HasPrefix(got, "Alice works") {
+		t.Fatalf("text must be kept, got %q", got)
+	}
+}
+
+func TestOllama_TrailingContentAfterTheJSONDocumentIsAnError(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte(`{"message":{"role":"assistant","content":"{\"action\":\"update\",\"reason\":\"x\"}"}} {"extra":1}`))
+	}))
+	defer srv.Close()
+	if _, _, err := newOllama(srv.URL).Resolve("n", conflict.Fact{ID: "1", Content: "e"}); err == nil {
+		t.Fatal("trailing content after the response document must be an error")
+	}
+}
 func TestPairOnly_PassesThroughNormalVerdicts(t *testing.T) {
 	srv := mockOllama(t, `{"action":"update","reason":"same"}`, http.StatusOK, nil)
 	defer srv.Close()

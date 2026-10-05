@@ -148,13 +148,17 @@ func (o *Ollama) ResolveAmong(newContent string, candidates []conflict.Fact) (co
 // untrusted, so every run of whitespace or control characters becomes one space,
 // which keeps a fact on a single line and stops it from imitating the prompt's own
 // structure (a fake NEW line, a fake numbered candidate), and the length is
-// capped. This reduces, and does not remove, the ability of a stored fact to
-// steer the judge.
+// capped. Unicode format characters (bidirectional controls, zero-width
+// characters) are removed. This reduces, and does not remove, the ability of a
+// stored fact to steer the judge.
 func promptText(s string) string {
 	var b strings.Builder
 	space := true
 	runes := 0
 	for _, r := range s {
+		if unicode.Is(unicode.Cf, r) {
+			continue
+		}
 		if unicode.IsSpace(r) || unicode.IsControl(r) {
 			if !space {
 				b.WriteRune(' ')
@@ -200,8 +204,15 @@ func (o *Ollama) chat(system, user string) (string, error) {
 	if resp.StatusCode != http.StatusOK {
 		return "", fmt.Errorf("ollama: status %d", resp.StatusCode)
 	}
+	body, err := io.ReadAll(io.LimitReader(resp.Body, maxResponseBytes+1))
+	if err != nil {
+		return "", err
+	}
+	if len(body) > maxResponseBytes {
+		return "", fmt.Errorf("ollama: response exceeds %d bytes", maxResponseBytes)
+	}
 	var out ollamaChatResponse
-	if err := json.NewDecoder(io.LimitReader(resp.Body, maxResponseBytes)).Decode(&out); err != nil {
+	if err := json.Unmarshal(body, &out); err != nil {
 		return "", err
 	}
 	if strings.TrimSpace(out.Message.Content) == "" {
@@ -267,14 +278,15 @@ type PairOnly struct {
 	Judge conflict.Resolver
 }
 
-// Resolve returns the judge's verdict. If the judge fails, the failure is logged
-// and the result is Add: a model that is down, slow or answering invalidly can
-// delay a write but can never cause an existing fact to be superseded.
+// Resolve returns the judge's verdict. A failure is logged and returned, never
+// turned into a verdict: with more than one candidate the engine then stops
+// consulting candidates and adds the fact, so a model that is down, slow or
+// answering invalidly can delay a write but can never cause an existing fact to
+// be superseded.
 func (p PairOnly) Resolve(newContent string, candidate conflict.Fact) (conflict.Action, string, error) {
 	act, reason, err := p.Judge.Resolve(newContent, candidate)
 	if err != nil {
 		log.Printf("conflict resolver: judge failed, keeping both facts: %v", err)
-		return conflict.ActionAdd, "judge failed, keeping both facts", nil
 	}
-	return act, reason, nil
+	return act, reason, err
 }

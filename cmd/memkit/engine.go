@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"time"
 
 	conflict "github.com/voltagebots/conflict-lens"
 	"github.com/voltagebots/memkit/internal/resolver"
@@ -12,6 +13,7 @@ const (
 	resolverConflictThreshold = 0.2
 	ollamaCandidateThreshold  = 0.1
 	defaultOllamaCandidates   = 10
+	defaultOllamaBudget       = 30 * time.Second
 )
 
 // buildEngine selects the conflict engine from the environment. MEMKIT_RESOLVER
@@ -59,6 +61,9 @@ func buildEngine(getenv func(string) string) (*conflict.Engine, string, error) {
 		if err != nil || n < 1 {
 			return nil, "", fmt.Errorf("MEMKIT_RESOLVER_MAX_CANDIDATES must be an integer >= 1, got %q", raw)
 		}
+		if mode == "ollama" && n < 2 {
+			return nil, "", fmt.Errorf("MEMKIT_RESOLVER_MAX_CANDIDATES must be >= 2 with the ollama resolver: a single candidate falls back to a heuristic update when the model fails")
+		}
 		engine.MaxCandidates = n
 	}
 	if raw := getenv("MEMKIT_RESOLVER_THRESHOLD"); raw != "" {
@@ -69,6 +74,24 @@ func buildEngine(getenv func(string) string) (*conflict.Engine, string, error) {
 		engine.ConflictThreshold = v
 	}
 	return engine, desc, nil
+}
+
+// resolveBudget is how long a write may wait for conflict resolution before the
+// fact is added without superseding anything. It defaults to 30 seconds with the
+// local model and to unbounded otherwise; "0s" turns it off.
+func resolveBudget(getenv func(string) string) (time.Duration, error) {
+	raw := getenv("MEMKIT_RESOLVER_BUDGET")
+	if raw == "" {
+		if getenv("MEMKIT_RESOLVER") == "ollama" {
+			return defaultOllamaBudget, nil
+		}
+		return 0, nil
+	}
+	d, err := time.ParseDuration(raw)
+	if err != nil || d < 0 {
+		return 0, fmt.Errorf("MEMKIT_RESOLVER_BUDGET must be a non-negative duration such as 30s, got %q", raw)
+	}
+	return d, nil
 }
 
 func firstOf(getenv func(string) string, keys ...string) string {

@@ -1,11 +1,21 @@
 package api
 
 import (
+	"context"
 	"sync"
 	"sync/atomic"
 	"testing"
 	"time"
 )
+
+func mustLock(t *testing.T, km *keyedMutex, key string) func() {
+	t.Helper()
+	unlock, err := km.lock(context.Background(), key)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return unlock
+}
 
 func TestKeyedMutex_SameKeyIsSerialized(t *testing.T) {
 	var km keyedMutex
@@ -15,7 +25,7 @@ func TestKeyedMutex_SameKeyIsSerialized(t *testing.T) {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
-			unlock := km.lock("tenant\x00user\x00general")
+			unlock := mustLock(t, &km, "tenant\x00user")
 			defer unlock()
 			n := atomic.AddInt32(&running, 1)
 			for {
@@ -43,7 +53,7 @@ func TestKeyedMutex_DifferentKeysRunInParallel(t *testing.T) {
 		wg.Add(1)
 		go func(key string) {
 			defer wg.Done()
-			unlock := km.lock(key)
+			unlock := mustLock(t, &km, key)
 			defer unlock()
 			n := atomic.AddInt32(&running, 1)
 			for {
@@ -70,11 +80,44 @@ func TestKeyedMutex_DifferentKeysRunInParallel(t *testing.T) {
 func TestKeyedMutex_ReleasesEntries(t *testing.T) {
 	var km keyedMutex
 	for i := 0; i < 100; i++ {
-		km.lock("k")()
+		mustLock(t, &km, "k")()
 	}
 	km.mu.Lock()
 	defer km.mu.Unlock()
 	if len(km.locks) != 0 {
 		t.Fatalf("idle keys must not accumulate, got %d", len(km.locks))
 	}
+}
+
+func TestKeyedMutex_WaiterStopsWhenItsContextIsCancelled(t *testing.T) {
+	var km keyedMutex
+	holder := mustLock(t, &km, "k")
+	ctx, cancel := context.WithCancel(context.Background())
+	done := make(chan error, 1)
+	go func() {
+		_, err := km.lock(ctx, "k")
+		done <- err
+	}()
+	time.Sleep(20 * time.Millisecond)
+	cancel()
+	select {
+	case err := <-done:
+		if err == nil {
+			t.Fatal("a cancelled waiter must get an error")
+		}
+	case <-time.After(time.Second):
+		t.Fatal("a cancelled waiter must stop waiting promptly")
+	}
+	holder()
+	km.mu.Lock()
+	leaked := len(km.locks)
+	km.mu.Unlock()
+	if leaked != 0 {
+		t.Fatalf("a cancelled waiter must not leak its entry, got %d", leaked)
+	}
+	next, err := km.lock(context.Background(), "k")
+	if err != nil {
+		t.Fatal(err)
+	}
+	next()
 }

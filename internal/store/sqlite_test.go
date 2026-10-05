@@ -2,6 +2,7 @@ package store
 
 import (
 	"context"
+	"errors"
 	"math/rand"
 	"strings"
 	"testing"
@@ -252,5 +253,26 @@ func TestSearchFindsFactsContainingNonASCIIWhitespace(t *testing.T) {
 func TestEscapeFTSSplitsOnASCIISpaceOnly(t *testing.T) {
 	if got, want := escapeFTS("a b c"), "\"a b c\" OR \"a b\"* OR \"c\"*"; got != want {
 		t.Fatalf("got  %s\nwant %s", got, want)
+	}
+}
+
+func TestSupersedeIsConditionalOnTheOldFactBeingActive(t *testing.T) {
+	s := mustOpen(t)
+	ctx := context.Background()
+	insert(t, s, "old", "city is Denver", time.Now())
+	insert(t, s, "new1", "city is Boston", time.Now())
+	insert(t, s, "new2", "city is Austin", time.Now())
+	if err := s.Supersede(ctx, "t", "old", "new1"); err != nil {
+		t.Fatal(err)
+	}
+	if err := s.Supersede(ctx, "t", "old", "new2"); !errors.Is(err, ErrNotActive) {
+		t.Fatalf("an already superseded fact must report ErrNotActive, got %v", err)
+	}
+	got, err := s.Get(ctx, "t", "old")
+	if err != nil || got.SupersededBy != "new1" {
+		t.Fatalf("the first supersession must be kept, got %+v %v", got, err)
+	}
+	if err := s.Supersede(ctx, "t", "missing", "new2"); !errors.Is(err, ErrNotFound) {
+		t.Fatalf("a missing fact must report ErrNotFound, got %v", err)
 	}
 }

@@ -23,9 +23,38 @@ type Server struct {
 	// auth maps an API key to a tenant ID. A request with no matching key is
 	// rejected. Keep small; swap for a DB-backed lookup at scale.
 	auth map[string]string
-	// writes serializes the read, judge and write sequence per tenant, user and
-	// category, so two writes cannot judge the same stale candidate.
+	// writes serializes every change to one user's memories, so a write cannot
+	// judge a candidate that another change is superseding or deleting.
 	writes keyedMutex
+	// resolveBudget bounds how long a write waits for conflict resolution. Zero
+	// means no bound. When it is exceeded the fact is added and nothing is
+	// superseded.
+	resolveBudget time.Duration
+}
+
+// SetResolveBudget sets how long a write may wait for conflict resolution.
+func (s *Server) SetResolveBudget(d time.Duration) { s.resolveBudget = d }
+
+func (s *Server) lockUser(ctx context.Context, tenant, user string) (func(), error) {
+	return s.writes.lock(ctx, tenant+"\x00"+user)
+}
+
+func (s *Server) resolveWithin(ctx context.Context, content string, facts []conflict.Fact) conflict.Decision {
+	if s.resolveBudget <= 0 {
+		return s.engine.Resolve(content, facts)
+	}
+	done := make(chan conflict.Decision, 1)
+	go func() { done <- s.engine.Resolve(content, facts) }()
+	timer := time.NewTimer(s.resolveBudget)
+	defer timer.Stop()
+	select {
+	case d := <-done:
+		return d
+	case <-timer.C:
+		return conflict.Decision{Action: conflict.ActionAdd, Reason: "resolution exceeded the time budget, keeping both facts"}
+	case <-ctx.Done():
+		return conflict.Decision{Action: conflict.ActionAdd, Reason: "request ended during resolution, keeping both facts"}
+	}
 }
 
 // New builds a Server. auth maps api-key → tenant-id.
@@ -90,14 +119,22 @@ func (s *Server) remember(w http.ResponseWriter, r *http.Request, tenant string)
 
 	// conflict-lens: compare against existing active facts in the same category.
 	if resolve {
-		unlock := s.writes.lock(tenant + "\x00" + user + "\x00" + category)
+		unlock, err := s.lockUser(ctx, tenant, user)
+		if err != nil {
+			writeErr(w, http.StatusServiceUnavailable, "request ended while waiting for a concurrent write")
+			return
+		}
 		defer unlock()
 		existing, err := s.store.ActiveByCategory(ctx, tenant, user, category)
 		if err != nil {
 			writeErr(w, http.StatusInternalServerError, "lookup failed")
 			return
 		}
-		decision := s.engine.Resolve(req.Content, toFacts(existing))
+		decision := s.resolveWithin(ctx, req.Content, toFacts(existing))
+		if ctx.Err() != nil {
+			writeErr(w, http.StatusServiceUnavailable, "request ended during conflict resolution")
+			return
+		}
 
 		switch decision.Action {
 		case conflict.ActionDuplicate:
@@ -114,7 +151,12 @@ func (s *Server) remember(w http.ResponseWriter, r *http.Request, tenant string)
 				writeErr(w, http.StatusInternalServerError, "store failed")
 				return
 			}
-			if err := s.store.Supersede(ctx, tenant, decision.TargetID, id); err != nil {
+			if err := s.store.Supersede(ctx, tenant, decision.TargetID, id); errors.Is(err, store.ErrNotActive) {
+				writeJSON(w, http.StatusCreated, rememberResp{
+					ID: id, Action: "add", Reason: "the candidate changed during resolution, keeping both facts",
+				})
+				return
+			} else if err != nil {
 				writeErr(w, http.StatusInternalServerError, "supersede failed")
 				return
 			}
@@ -184,6 +226,24 @@ func (s *Server) update(w http.ResponseWriter, r *http.Request, tenant string) {
 		writeErr(w, http.StatusInternalServerError, "lookup failed")
 		return
 	}
+	unlock, err := s.lockUser(r.Context(), tenant, old.UserID)
+	if err != nil {
+		writeErr(w, http.StatusServiceUnavailable, "request ended while waiting for a concurrent write")
+		return
+	}
+	defer unlock()
+	old, err = s.store.Get(r.Context(), tenant, oldID)
+	if errors.Is(err, store.ErrNotFound) {
+		writeErr(w, http.StatusNotFound, "memory not found")
+		return
+	} else if err != nil {
+		writeErr(w, http.StatusInternalServerError, "lookup failed")
+		return
+	}
+	if !old.Active() {
+		writeErr(w, http.StatusConflict, "memory was already superseded")
+		return
+	}
 	confidence := 1.0
 	if req.Confidence != nil {
 		confidence = *req.Confidence
@@ -194,7 +254,11 @@ func (s *Server) update(w http.ResponseWriter, r *http.Request, tenant string) {
 		writeErr(w, http.StatusInternalServerError, "store failed")
 		return
 	}
-	if err := s.store.Supersede(r.Context(), tenant, oldID, newID); err != nil {
+	if err := s.store.Supersede(r.Context(), tenant, oldID, newID); errors.Is(err, store.ErrNotActive) {
+		_, _ = s.store.Delete(r.Context(), tenant, newID)
+		writeErr(w, http.StatusConflict, "memory was already superseded")
+		return
+	} else if err != nil {
 		writeErr(w, http.StatusInternalServerError, "supersede failed")
 		return
 	}
@@ -204,7 +268,22 @@ func (s *Server) update(w http.ResponseWriter, r *http.Request, tenant string) {
 }
 
 func (s *Server) forget(w http.ResponseWriter, r *http.Request, tenant string) {
-	ok, err := s.store.Delete(r.Context(), tenant, r.PathValue("id"))
+	id := r.PathValue("id")
+	m, err := s.store.Get(r.Context(), tenant, id)
+	if errors.Is(err, store.ErrNotFound) {
+		writeErr(w, http.StatusNotFound, "memory not found")
+		return
+	} else if err != nil {
+		writeErr(w, http.StatusInternalServerError, "lookup failed")
+		return
+	}
+	unlock, err := s.lockUser(r.Context(), tenant, m.UserID)
+	if err != nil {
+		writeErr(w, http.StatusServiceUnavailable, "request ended while waiting for a concurrent write")
+		return
+	}
+	defer unlock()
+	ok, err := s.store.Delete(r.Context(), tenant, id)
 	if err != nil {
 		writeErr(w, http.StatusInternalServerError, "delete failed")
 		return
@@ -227,7 +306,14 @@ func (s *Server) categories(w http.ResponseWriter, r *http.Request, tenant strin
 }
 
 func (s *Server) purgeUser(w http.ResponseWriter, r *http.Request, tenant string) {
-	n, err := s.store.PurgeUser(r.Context(), tenant, r.PathValue("user_id"))
+	user := r.PathValue("user_id")
+	unlock, err := s.lockUser(r.Context(), tenant, user)
+	if err != nil {
+		writeErr(w, http.StatusServiceUnavailable, "request ended while waiting for a concurrent write")
+		return
+	}
+	defer unlock()
+	n, err := s.store.PurgeUser(r.Context(), tenant, user)
 	if err != nil {
 		writeErr(w, http.StatusInternalServerError, "purge failed")
 		return

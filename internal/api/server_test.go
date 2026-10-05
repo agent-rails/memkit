@@ -256,3 +256,105 @@ func TestRememberDoesNotBlockDifferentUsers(t *testing.T) {
 		t.Fatalf("different users must be able to resolve in parallel, peak=%d", r.peak)
 	}
 }
+
+type gatedResolver struct {
+	entered chan struct{}
+	release chan struct{}
+}
+
+func (g *gatedResolver) Resolve(string, conflict.Fact) (conflict.Action, string, error) {
+	select {
+	case g.entered <- struct{}{}:
+	default:
+	}
+	<-g.release
+	return conflict.ActionAdd, "gated", nil
+}
+
+func TestMutationsWaitForAnInFlightResolutionOfTheSameUser(t *testing.T) {
+	g := &gatedResolver{entered: make(chan struct{}, 1), release: make(chan struct{})}
+	h := serverWithResolver(t, g)
+	_, seed := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	id, _ := seed["id"].(string)
+
+	remembered := make(chan struct{})
+	go func() {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at OpenAI as a backend engineer"})
+		close(remembered)
+	}()
+	<-g.entered
+
+	type call struct {
+		name string
+		run  func()
+	}
+	calls := []call{
+		{"update", func() {
+			do(t, h, "PUT", "/v1/memories/"+id, map[string]any{"content": "User works at Meta as a backend engineer"})
+		}},
+		{"forget", func() { do(t, h, "DELETE", "/v1/memories/"+id, nil) }},
+		{"purge", func() { do(t, h, "DELETE", "/v1/users/u", nil) }},
+	}
+	finished := make(chan string, len(calls))
+	for _, c := range calls {
+		go func(c call) {
+			c.run()
+			finished <- c.name
+		}(c)
+	}
+	select {
+	case name := <-finished:
+		t.Fatalf("%s must wait for the in-flight resolution of the same user", name)
+	case <-time.After(150 * time.Millisecond):
+	}
+	close(g.release)
+	<-remembered
+	for range calls {
+		select {
+		case <-finished:
+		case <-time.After(2 * time.Second):
+			t.Fatal("mutations must proceed once the resolution finishes")
+		}
+	}
+}
+
+func TestExplicitUpdateOfAnAlreadySupersededFactIsAConflict(t *testing.T) {
+	h := newTestServer(t)
+	_, first := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "city is Denver"})
+	oldID, _ := first["id"].(string)
+	if code, _ := do(t, h, "PUT", "/v1/memories/"+oldID, map[string]any{"content": "city is Boston"}); code != http.StatusOK {
+		t.Fatalf("first update must succeed, got %d", code)
+	}
+	if code, _ := do(t, h, "PUT", "/v1/memories/"+oldID, map[string]any{"content": "city is Austin"}); code != http.StatusConflict {
+		t.Fatalf("updating a superseded fact must be a conflict, got %d", code)
+	}
+}
+
+type slowResolver struct{ delay time.Duration }
+
+func (s slowResolver) Resolve(string, conflict.Fact) (conflict.Action, string, error) {
+	time.Sleep(s.delay)
+	return conflict.ActionUpdate, "slow", nil
+}
+
+func TestRememberStopsWaitingForAModelBeyondTheBudget(t *testing.T) {
+	st, err := store.OpenSQLite(":memory:")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { st.Close() })
+	e := conflict.NewEngine()
+	e.Resolver = slowResolver{delay: 600 * time.Millisecond}
+	srv := New(st, e, map[string]string{"k": "acme"})
+	srv.SetResolveBudget(50 * time.Millisecond)
+	h := srv.Handler()
+	do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	start := time.Now()
+	code, out := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at OpenAI as a backend engineer"})
+	if elapsed := time.Since(start); elapsed > 400*time.Millisecond {
+		t.Fatalf("the write must not wait for a model beyond the budget, took %s", elapsed)
+	}
+	if code != http.StatusCreated || out["action"] != "add" {
+		t.Fatalf("a timed out resolution must add and supersede nothing, got %d %v", code, out)
+	}
+}

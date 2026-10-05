@@ -181,13 +181,16 @@ func (s *SQLite) Search(ctx context.Context, tenant, user, query string, opts Se
 
 func (s *SQLite) Supersede(ctx context.Context, tenant, oldID, newID string) error {
 	res, err := s.db.ExecContext(ctx,
-		`UPDATE memories SET superseded_by = ? WHERE tenant_id = ? AND id = ?`,
+		`UPDATE memories SET superseded_by = ? WHERE tenant_id = ? AND id = ? AND superseded_by IS NULL`,
 		newID, tenant, oldID)
 	if err != nil {
 		return fmt.Errorf("supersede: %w", err)
 	}
 	if n, _ := res.RowsAffected(); n == 0 {
-		return ErrNotFound
+		if _, err := s.Get(ctx, tenant, oldID); err != nil {
+			return err
+		}
+		return ErrNotActive
 	}
 	return nil
 }

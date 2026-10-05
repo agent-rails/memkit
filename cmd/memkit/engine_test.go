@@ -3,6 +3,7 @@ package main
 import (
 	"strings"
 	"testing"
+	"time"
 
 	conflict "github.com/voltagebots/conflict-lens"
 	"github.com/voltagebots/memkit/internal/resolver"
@@ -97,18 +98,41 @@ func TestBuildEngine_ThresholdOverride(t *testing.T) {
 
 func TestBuildEngine_InvalidConfigFailsFast(t *testing.T) {
 	cases := map[string]map[string]string{
-		"unknown mode":           {"MEMKIT_RESOLVER": "gpt"},
-		"unknown ollama mode":    {"MEMKIT_RESOLVER": "ollama", "MEMKIT_OLLAMA_MODE": "fast"},
-		"claude without key":     {"MEMKIT_RESOLVER": "claude"},
-		"max candidates not int": {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_MAX_CANDIDATES": "many"},
-		"max candidates zero":    {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_MAX_CANDIDATES": "0"},
-		"threshold not number":   {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_THRESHOLD": "low"},
-		"threshold zero":         {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_THRESHOLD": "0"},
-		"threshold above dup":    {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_THRESHOLD": "0.9"},
+		"unknown mode":            {"MEMKIT_RESOLVER": "gpt"},
+		"unknown ollama mode":     {"MEMKIT_RESOLVER": "ollama", "MEMKIT_OLLAMA_MODE": "fast"},
+		"claude without key":      {"MEMKIT_RESOLVER": "claude"},
+		"max candidates not int":  {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_MAX_CANDIDATES": "many"},
+		"max candidates zero":     {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_MAX_CANDIDATES": "0"},
+		"threshold not number":    {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_THRESHOLD": "low"},
+		"ollama single candidate": {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_MAX_CANDIDATES": "1"},
+		"threshold zero":          {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_THRESHOLD": "0"},
+		"threshold above dup":     {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_THRESHOLD": "0.9"},
 	}
 	for name, c := range cases {
 		if _, _, err := buildEngine(env(c)); err == nil {
 			t.Fatalf("%s: want an error", name)
+		}
+	}
+}
+
+func TestResolveBudget(t *testing.T) {
+	cases := []struct {
+		name string
+		env  map[string]string
+		want time.Duration
+		fail bool
+	}{
+		{"unset", nil, 0, false},
+		{"ollama default", map[string]string{"MEMKIT_RESOLVER": "ollama"}, 30 * time.Second, false},
+		{"explicit", map[string]string{"MEMKIT_RESOLVER_BUDGET": "5s"}, 5 * time.Second, false},
+		{"off", map[string]string{"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_BUDGET": "0s"}, 0, false},
+		{"not a duration", map[string]string{"MEMKIT_RESOLVER_BUDGET": "soon"}, 0, true},
+		{"negative", map[string]string{"MEMKIT_RESOLVER_BUDGET": "-1s"}, 0, true},
+	}
+	for _, c := range cases {
+		got, err := resolveBudget(env(c.env))
+		if (err != nil) != c.fail || got != c.want {
+			t.Fatalf("%s: want %v fail=%v, got %v err=%v", c.name, c.want, c.fail, got, err)
 		}
 	}
 }
