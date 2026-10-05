@@ -470,3 +470,20 @@ func TestSetMaxConcurrentResolutionsRejectsNonPositiveValues(t *testing.T) {
 		t.Fatalf("a positive value must be accepted, got %v cap=%d", err, cap(srv.slots))
 	}
 }
+
+func TestAPanickingResolverWithoutABudgetStillAddsTheFact(t *testing.T) {
+	st, err := store.OpenSQLite(":memory:")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { st.Close() })
+	e := conflict.NewEngine()
+	e.Resolver = panickingResolver{}
+	srv := New(st, e, map[string]string{"k": "acme"})
+	h := srv.Handler()
+	do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	code, out := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at OpenAI as a backend engineer"})
+	if code != http.StatusCreated || out["action"] != "add" {
+		t.Fatalf("without a budget a panicking resolver must also resolve to add, got %d %v", code, out)
+	}
+}

@@ -54,9 +54,21 @@ func (s *Server) lockUser(ctx context.Context, tenant, user string) (func(), err
 	return s.writes.lock(ctx, tenant+"\x00"+user)
 }
 
+// safeResolve runs the engine and turns a panic in a resolver into an add, so a
+// faulty resolver can never take down the process or lose the write.
+func (s *Server) safeResolve(content string, facts []conflict.Fact) (d conflict.Decision) {
+	defer func() {
+		if r := recover(); r != nil {
+			log.Printf("conflict resolver panicked, keeping both facts: %v", r)
+			d = conflict.Decision{Action: conflict.ActionAdd, Reason: "resolver panicked, keeping both facts"}
+		}
+	}()
+	return s.engine.Resolve(content, facts)
+}
+
 func (s *Server) resolveWithin(ctx context.Context, content string, facts []conflict.Fact) conflict.Decision {
 	if s.resolveBudget <= 0 {
-		return s.engine.Resolve(content, facts)
+		return s.safeResolve(content, facts)
 	}
 	timer := time.NewTimer(s.resolveBudget)
 	defer timer.Stop()
@@ -70,13 +82,7 @@ func (s *Server) resolveWithin(ctx context.Context, content string, facts []conf
 	done := make(chan conflict.Decision, 1)
 	go func() {
 		defer func() { <-s.slots }()
-		defer func() {
-			if r := recover(); r != nil {
-				log.Printf("conflict resolver panicked, keeping both facts: %v", r)
-				done <- conflict.Decision{Action: conflict.ActionAdd, Reason: "resolver panicked, keeping both facts"}
-			}
-		}()
-		done <- s.engine.Resolve(content, facts)
+		done <- s.safeResolve(content, facts)
 	}()
 	select {
 	case d := <-done:
