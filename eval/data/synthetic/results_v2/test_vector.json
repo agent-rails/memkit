@@ -1,0 +1,82 @@
+{
+  "split": "test",
+  "backend": "vector",
+  "categories": {
+    "update_same_frame": {
+      "stale_rate": {
+        "value": 0.9901960784313726,
+        "n": 102,
+        "ci_low": 0.9465407803733753,
+        "ci_high": 0.9982673102072662
+      },
+      "update_recall": {
+        "value": 0.9901960784313726,
+        "n": 102,
+        "ci_low": 0.9465407803733753,
+        "ci_high": 0.9982673102072662
+      }
+    },
+    "update_reworded": {
+      "stale_rate": {
+        "value": 1.0,
+        "n": 102,
+        "ci_low": 0.9637042523922542,
+        "ci_high": 1.0
+      },
+      "update_recall": {
+        "value": 0.9901960784313726,
+        "n": 102,
+        "ci_low": 0.9465407803733753,
+        "ci_high": 0.9982673102072662
+      }
+    },
+    "cross_subject_same_value": {
+      "retention_rate": {
+        "value": 1.0,
+        "n": 102,
+        "ci_low": 0.9637042523922542,
+        "ci_high": 1.0
+      },
+      "false_supersession_rate": {
+        "value": 0.0,
+        "n": 102,
+        "ci_low": 0.0,
+        "ci_high": 0.03629574760774591
+      }
+    },
+    "additive_other_attribute": {
+      "retention_rate": {
+        "value": 0.9901960784313726,
+        "n": 102,
+        "ci_low": 0.9465407803733753,
+        "ci_high": 0.9982673102072662
+      },
+      "false_supersession_rate": {
+        "value": 0.00980392156862745,
+        "n": 102,
+        "ci_low": 0.0017326897927338984,
+        "ci_high": 0.05345921962662484
+      }
+    },
+    "restatement": {
+      "retention_rate": {
+        "value": 1.0,
+        "n": 102,
+        "ci_low": 0.9637042523922542,
+        "ci_high": 1.0
+      },
+      "false_supersession_rate": {
+        "value": 0.0,
+        "n": 102,
+        "ci_low": 0.0,
+        "ci_high": 0.03629574760774591
+      }
+    }
+  },
+  "write_latency_ms": {
+    "median": 4.926499997964129,
+    "p95": 6.13116699969396,
+    "n": 816
+  },
+  "user": "conflict-v2-e42b043c-dbf6-4519-9b03-11579a17a275"
+}

@@ -5,7 +5,10 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"sync"
+	"sync/atomic"
 	"testing"
+	"time"
 
 	conflict "github.com/voltagebots/conflict-lens"
 	"github.com/voltagebots/memkit/internal/store"
@@ -175,5 +178,312 @@ func TestSearchEmptyResultIsAnArrayNotNull(t *testing.T) {
 	}
 	if len(memories) != 0 || out["count"] != float64(0) {
 		t.Fatalf("want empty array and count 0, got %v count=%v", memories, out["count"])
+	}
+}
+
+type countingResolver struct {
+	running, peak int32
+	delay         time.Duration
+}
+
+func (c *countingResolver) Resolve(string, conflict.Fact) (conflict.Action, string, error) {
+	n := atomic.AddInt32(&c.running, 1)
+	for {
+		p := atomic.LoadInt32(&c.peak)
+		if n <= p || atomic.CompareAndSwapInt32(&c.peak, p, n) {
+			break
+		}
+	}
+	time.Sleep(c.delay)
+	atomic.AddInt32(&c.running, -1)
+	return conflict.ActionAdd, "stub", nil
+}
+
+func serverWithResolver(t *testing.T, r conflict.Resolver) http.Handler {
+	t.Helper()
+	st, err := store.OpenSQLite(":memory:")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { st.Close() })
+	e := conflict.NewEngine()
+	e.Resolver = r
+	return New(st, e, map[string]string{"k": "acme"}).Handler()
+}
+
+func concurrentWrites(t *testing.T, h http.Handler, users []string) {
+	t.Helper()
+	for _, u := range users {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": u, "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	}
+	var wg sync.WaitGroup
+	for _, u := range users {
+		wg.Add(1)
+		go func(u string) {
+			defer wg.Done()
+			do(t, h, "POST", "/v1/memories", map[string]any{"user_id": u, "content": "User works at OpenAI as a backend engineer"})
+		}(u)
+	}
+	wg.Wait()
+}
+
+func TestRememberSerializesResolutionPerUser(t *testing.T) {
+	r := &countingResolver{delay: 30 * time.Millisecond}
+	h := serverWithResolver(t, r)
+	users := []string{"same", "same", "same"}
+	for i := 0; i < 3; i++ {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "same", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	}
+	var wg sync.WaitGroup
+	for range users {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "same", "content": "User works at OpenAI as a backend engineer"})
+		}()
+	}
+	wg.Wait()
+	if r.peak != 1 {
+		t.Fatalf("resolution for one user must never overlap, peak=%d", r.peak)
+	}
+}
+
+func TestRememberDoesNotBlockDifferentUsers(t *testing.T) {
+	r := &countingResolver{delay: 150 * time.Millisecond}
+	h := serverWithResolver(t, r)
+	concurrentWrites(t, h, []string{"u1", "u2", "u3"})
+	if r.peak < 2 {
+		t.Fatalf("different users must be able to resolve in parallel, peak=%d", r.peak)
+	}
+}
+
+type gatedResolver struct {
+	entered chan struct{}
+	release chan struct{}
+}
+
+func (g *gatedResolver) Resolve(string, conflict.Fact) (conflict.Action, string, error) {
+	select {
+	case g.entered <- struct{}{}:
+	default:
+	}
+	<-g.release
+	return conflict.ActionAdd, "gated", nil
+}
+
+func TestMutationsWaitForAnInFlightResolutionOfTheSameUser(t *testing.T) {
+	g := &gatedResolver{entered: make(chan struct{}, 1), release: make(chan struct{})}
+	h := serverWithResolver(t, g)
+	_, seed := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	id, _ := seed["id"].(string)
+
+	remembered := make(chan struct{})
+	go func() {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at OpenAI as a backend engineer"})
+		close(remembered)
+	}()
+	<-g.entered
+
+	type call struct {
+		name string
+		run  func()
+	}
+	calls := []call{
+		{"update", func() {
+			do(t, h, "PUT", "/v1/memories/"+id, map[string]any{"content": "User works at Meta as a backend engineer"})
+		}},
+		{"forget", func() { do(t, h, "DELETE", "/v1/memories/"+id, nil) }},
+		{"purge", func() { do(t, h, "DELETE", "/v1/users/u", nil) }},
+	}
+	finished := make(chan string, len(calls))
+	for _, c := range calls {
+		go func(c call) {
+			c.run()
+			finished <- c.name
+		}(c)
+	}
+	select {
+	case name := <-finished:
+		t.Fatalf("%s must wait for the in-flight resolution of the same user", name)
+	case <-time.After(150 * time.Millisecond):
+	}
+	close(g.release)
+	<-remembered
+	for range calls {
+		select {
+		case <-finished:
+		case <-time.After(2 * time.Second):
+			t.Fatal("mutations must proceed once the resolution finishes")
+		}
+	}
+}
+
+func TestExplicitUpdateOfAnAlreadySupersededFactIsAConflict(t *testing.T) {
+	h := newTestServer(t)
+	_, first := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "city is Denver"})
+	oldID, _ := first["id"].(string)
+	if code, _ := do(t, h, "PUT", "/v1/memories/"+oldID, map[string]any{"content": "city is Boston"}); code != http.StatusOK {
+		t.Fatalf("first update must succeed, got %d", code)
+	}
+	if code, _ := do(t, h, "PUT", "/v1/memories/"+oldID, map[string]any{"content": "city is Austin"}); code != http.StatusConflict {
+		t.Fatalf("updating a superseded fact must be a conflict, got %d", code)
+	}
+}
+
+type slowResolver struct{ delay time.Duration }
+
+func (s slowResolver) Resolve(string, conflict.Fact) (conflict.Action, string, error) {
+	time.Sleep(s.delay)
+	return conflict.ActionUpdate, "slow", nil
+}
+
+func TestRememberStopsWaitingForAModelBeyondTheBudget(t *testing.T) {
+	st, err := store.OpenSQLite(":memory:")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { st.Close() })
+	e := conflict.NewEngine()
+	e.Resolver = slowResolver{delay: 600 * time.Millisecond}
+	srv := New(st, e, map[string]string{"k": "acme"})
+	srv.SetResolveBudget(50 * time.Millisecond)
+	h := srv.Handler()
+	do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	start := time.Now()
+	code, out := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at OpenAI as a backend engineer"})
+	if elapsed := time.Since(start); elapsed > 400*time.Millisecond {
+		t.Fatalf("the write must not wait for a model beyond the budget, took %s", elapsed)
+	}
+	if code != http.StatusCreated || out["action"] != "add" {
+		t.Fatalf("a timed out resolution must add and supersede nothing, got %d %v", code, out)
+	}
+}
+
+func TestPlainWriteAlsoWaitsForAnInFlightResolutionOfTheSameUser(t *testing.T) {
+	g := &gatedResolver{entered: make(chan struct{}, 1), release: make(chan struct{})}
+	h := serverWithResolver(t, g)
+	do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	remembered := make(chan struct{})
+	go func() {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at OpenAI as a backend engineer"})
+		close(remembered)
+	}()
+	<-g.entered
+	plain := make(chan struct{})
+	go func() {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User likes tea", "resolve_conflicts": false})
+		close(plain)
+	}()
+	select {
+	case <-plain:
+		t.Fatal("a write that skips conflict resolution must still wait for the user's in-flight resolution")
+	case <-time.After(150 * time.Millisecond):
+	}
+	close(g.release)
+	<-remembered
+	select {
+	case <-plain:
+	case <-time.After(2 * time.Second):
+		t.Fatal("the plain write must proceed once resolution finishes")
+	}
+}
+
+type countingSlow struct {
+	calls int32
+	delay time.Duration
+}
+
+func (c *countingSlow) Resolve(string, conflict.Fact) (conflict.Action, string, error) {
+	atomic.AddInt32(&c.calls, 1)
+	time.Sleep(c.delay)
+	return conflict.ActionUpdate, "slow", nil
+}
+
+func TestAbandonedResolutionsStillCountAgainstTheConcurrencyBound(t *testing.T) {
+	st, err := store.OpenSQLite(":memory:")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { st.Close() })
+	r := &countingSlow{delay: 400 * time.Millisecond}
+	e := conflict.NewEngine()
+	e.Resolver = r
+	srv := New(st, e, map[string]string{"k": "acme"})
+	srv.SetResolveBudget(40 * time.Millisecond)
+	if err := srv.SetMaxConcurrentResolutions(1); err != nil {
+		t.Fatal(err)
+	}
+	h := srv.Handler()
+	for _, u := range []string{"a", "b"} {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": u, "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	}
+	start := time.Now()
+	_, first := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "a", "content": "User works at OpenAI as a backend engineer"})
+	_, second := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "b", "content": "User works at OpenAI as a backend engineer"})
+	if time.Since(start) > 300*time.Millisecond {
+		t.Fatalf("both writes must return within their budgets, took %s", time.Since(start))
+	}
+	if first["action"] != "add" || second["action"] != "add" {
+		t.Fatalf("both timed out writes must add, got %v and %v", first["action"], second["action"])
+	}
+	time.Sleep(100 * time.Millisecond)
+	if n := atomic.LoadInt32(&r.calls); n != 1 {
+		t.Fatalf("the second write must not start a model call while the abandoned one still runs, got %d calls", n)
+	}
+}
+
+type panickingResolver struct{}
+
+func (panickingResolver) Resolve(string, conflict.Fact) (conflict.Action, string, error) {
+	panic("model client exploded")
+}
+
+func TestAPanickingResolverCannotCrashTheProcess(t *testing.T) {
+	st, err := store.OpenSQLite(":memory:")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { st.Close() })
+	e := conflict.NewEngine()
+	e.Resolver = panickingResolver{}
+	srv := New(st, e, map[string]string{"k": "acme"})
+	srv.SetResolveBudget(time.Second)
+	h := srv.Handler()
+	do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	code, out := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at OpenAI as a backend engineer"})
+	if code != http.StatusCreated || out["action"] != "add" {
+		t.Fatalf("a panicking resolver must resolve to add, got %d %v", code, out)
+	}
+	if len(srv.slots) != 0 {
+		t.Fatalf("the slot must be released after a panic, %d still held", len(srv.slots))
+	}
+}
+
+func TestSetMaxConcurrentResolutionsRejectsNonPositiveValues(t *testing.T) {
+	srv := New(nil, conflict.NewEngine(), nil)
+	for _, n := range []int{0, -1} {
+		if err := srv.SetMaxConcurrentResolutions(n); err == nil {
+			t.Fatalf("%d must be rejected", n)
+		}
+	}
+	if err := srv.SetMaxConcurrentResolutions(3); err != nil || cap(srv.slots) != 3 {
+		t.Fatalf("a positive value must be accepted, got %v cap=%d", err, cap(srv.slots))
+	}
+}
+
+func TestAPanickingResolverWithoutABudgetStillAddsTheFact(t *testing.T) {
+	st, err := store.OpenSQLite(":memory:")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { st.Close() })
+	e := conflict.NewEngine()
+	e.Resolver = panickingResolver{}
+	srv := New(st, e, map[string]string{"k": "acme"})
+	h := srv.Handler()
+	do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	code, out := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at OpenAI as a backend engineer"})
+	if code != http.StatusCreated || out["action"] != "add" {
+		t.Fatalf("without a budget a panicking resolver must also resolve to add, got %d %v", code, out)
 	}
 }

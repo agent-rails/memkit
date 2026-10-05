@@ -65,7 +65,14 @@ type Store interface {
 	// time-decay. Superseded memories are never returned.
 	Search(ctx context.Context, tenant, user, query string, opts SearchOpts) ([]Scored, error)
 
-	// Supersede marks oldID as replaced by newID. Both must belong to tenant.
+	// Replace inserts m and supersedes oldID with it in one transaction. If oldID
+	// is missing it returns ErrNotFound, and if oldID is already superseded it
+	// returns ErrNotActive; in both cases nothing is inserted.
+	Replace(ctx context.Context, m Memory, oldID string) error
+
+	// Supersede marks oldID as replaced by newID. Both must belong to tenant. It
+	// succeeds only while oldID is active: a memory that is already superseded
+	// returns ErrNotActive and is left unchanged.
 	Supersede(ctx context.Context, tenant, oldID, newID string) error
 
 	// Touch bumps LastAccessed and AccessCount for a recalled memory.

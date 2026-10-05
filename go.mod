@@ -3,7 +3,7 @@ module github.com/voltagebots/memkit
 go 1.26.4
 
 require (
-	github.com/voltagebots/conflict-lens v0.1.0
+	github.com/voltagebots/conflict-lens v0.2.0
 	modernc.org/sqlite v1.52.0
 )
 

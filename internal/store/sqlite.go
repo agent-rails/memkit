@@ -81,16 +81,50 @@ func (s *SQLite) migrate() error {
 }
 
 func (s *SQLite) Insert(ctx context.Context, m Memory) error {
-	meta, err := json.Marshal(orEmpty(m.Metadata))
-	if err != nil {
-		return fmt.Errorf("marshal metadata: %w", err)
-	}
 	tx, err := s.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
+	if err := insertMemory(ctx, tx, m); err != nil {
+		return err
+	}
+	return tx.Commit()
+}
 
+func (s *SQLite) Replace(ctx context.Context, m Memory, oldID string) error {
+	tx, err := s.db.BeginTx(ctx, nil)
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+	if err := insertMemory(ctx, tx, m); err != nil {
+		return err
+	}
+	res, err := tx.ExecContext(ctx,
+		`UPDATE memories SET superseded_by = ? WHERE tenant_id = ? AND id = ? AND superseded_by IS NULL`,
+		m.ID, m.TenantID, oldID)
+	if err != nil {
+		return fmt.Errorf("supersede: %w", err)
+	}
+	if n, _ := res.RowsAffected(); n == 0 {
+		var existing string
+		err := tx.QueryRowContext(ctx, `SELECT id FROM memories WHERE tenant_id = ? AND id = ?`, m.TenantID, oldID).Scan(&existing)
+		if err == sql.ErrNoRows {
+			return ErrNotFound
+		} else if err != nil {
+			return err
+		}
+		return ErrNotActive
+	}
+	return tx.Commit()
+}
+
+func insertMemory(ctx context.Context, tx *sql.Tx, m Memory) error {
+	meta, err := json.Marshal(orEmpty(m.Metadata))
+	if err != nil {
+		return fmt.Errorf("marshal metadata: %w", err)
+	}
 	_, err = tx.ExecContext(ctx, `
 		INSERT INTO memories
 			(id, tenant_id, user_id, content, category, confidence, metadata, created_at, last_accessed, access_count, superseded_by)
@@ -107,7 +141,7 @@ func (s *SQLite) Insert(ctx context.Context, m Memory) error {
 	if err != nil {
 		return fmt.Errorf("insert fts: %w", err)
 	}
-	return tx.Commit()
+	return nil
 }
 
 func (s *SQLite) Get(ctx context.Context, tenant, id string) (Memory, error) {
@@ -181,13 +215,16 @@ func (s *SQLite) Search(ctx context.Context, tenant, user, query string, opts Se
 
 func (s *SQLite) Supersede(ctx context.Context, tenant, oldID, newID string) error {
 	res, err := s.db.ExecContext(ctx,
-		`UPDATE memories SET superseded_by = ? WHERE tenant_id = ? AND id = ?`,
+		`UPDATE memories SET superseded_by = ? WHERE tenant_id = ? AND id = ? AND superseded_by IS NULL`,
 		newID, tenant, oldID)
 	if err != nil {
 		return fmt.Errorf("supersede: %w", err)
 	}
 	if n, _ := res.RowsAffected(); n == 0 {
-		return ErrNotFound
+		if _, err := s.Get(ctx, tenant, oldID); err != nil {
+			return err
+		}
+		return ErrNotActive
 	}
 	return nil
 }

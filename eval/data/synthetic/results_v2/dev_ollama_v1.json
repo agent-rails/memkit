@@ -1,0 +1,82 @@
+{
+  "split": "dev",
+  "backend": "memkit",
+  "categories": {
+    "update_same_frame": {
+      "stale_rate": {
+        "value": 0.23529411764705882,
+        "n": 102,
+        "ci_low": 0.16351981131738558,
+        "ci_high": 0.32628381976906823
+      },
+      "update_recall": {
+        "value": 0.9803921568627451,
+        "n": 102,
+        "ci_low": 0.9313055678943739,
+        "ci_high": 0.9946063608746546
+      }
+    },
+    "update_reworded": {
+      "stale_rate": {
+        "value": 0.4411764705882353,
+        "n": 102,
+        "ci_low": 0.3486917254481499,
+        "ci_high": 0.5379313036821731
+      },
+      "update_recall": {
+        "value": 0.9411764705882353,
+        "n": 102,
+        "ci_low": 0.8775625496622301,
+        "ci_high": 0.972764731860347
+      }
+    },
+    "cross_subject_same_value": {
+      "retention_rate": {
+        "value": 0.9901960784313726,
+        "n": 102,
+        "ci_low": 0.9465407803733753,
+        "ci_high": 0.9982673102072662
+      },
+      "false_supersession_rate": {
+        "value": 0.00980392156862745,
+        "n": 102,
+        "ci_low": 0.0017326897927338984,
+        "ci_high": 0.05345921962662484
+      }
+    },
+    "additive_other_attribute": {
+      "retention_rate": {
+        "value": 0.9411764705882353,
+        "n": 102,
+        "ci_low": 0.8775625496622301,
+        "ci_high": 0.972764731860347
+      },
+      "false_supersession_rate": {
+        "value": 0.058823529411764705,
+        "n": 102,
+        "ci_low": 0.02723526813965306,
+        "ci_high": 0.1224374503377698
+      }
+    },
+    "restatement": {
+      "retention_rate": {
+        "value": 1.0,
+        "n": 102,
+        "ci_low": 0.9637042523922542,
+        "ci_high": 1.0
+      },
+      "false_supersession_rate": {
+        "value": 0.0,
+        "n": 102,
+        "ci_low": 0.0,
+        "ci_high": 0.03629574760774591
+      }
+    }
+  },
+  "write_latency_ms": {
+    "median": 1374.5594375013752,
+    "p95": 1546.4959580021969,
+    "n": 816
+  },
+  "user": "conflict-v2-753957e6-84cf-42ca-b5be-292336ab9812"
+}

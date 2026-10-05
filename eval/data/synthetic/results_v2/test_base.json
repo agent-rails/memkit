@@ -1,0 +1,82 @@
+{
+  "split": "test",
+  "backend": "memkit",
+  "categories": {
+    "update_same_frame": {
+      "stale_rate": {
+        "value": 0.1568627450980392,
+        "n": 102,
+        "ci_low": 0.09892204793074443,
+        "ci_high": 0.23971228866280675
+      },
+      "update_recall": {
+        "value": 0.5,
+        "n": 102,
+        "ci_low": 0.40474278556489024,
+        "ci_high": 0.5952572144351097
+      }
+    },
+    "update_reworded": {
+      "stale_rate": {
+        "value": 0.3333333333333333,
+        "n": 102,
+        "ci_low": 0.2493697609902782,
+        "ci_high": 0.4293954882123038
+      },
+      "update_recall": {
+        "value": 0.8823529411764706,
+        "n": 102,
+        "ci_low": 0.8055441009473683,
+        "ci_high": 0.931406209705532
+      }
+    },
+    "cross_subject_same_value": {
+      "retention_rate": {
+        "value": 0.28431372549019607,
+        "n": 102,
+        "ci_low": 0.2058478204977063,
+        "ci_high": 0.3784366196468115
+      },
+      "false_supersession_rate": {
+        "value": 0.7156862745098039,
+        "n": 102,
+        "ci_low": 0.6215633803531885,
+        "ci_high": 0.7941521795022938
+      }
+    },
+    "additive_other_attribute": {
+      "retention_rate": {
+        "value": 0.5,
+        "n": 102,
+        "ci_low": 0.40474278556489024,
+        "ci_high": 0.5952572144351097
+      },
+      "false_supersession_rate": {
+        "value": 0.5,
+        "n": 102,
+        "ci_low": 0.40474278556489024,
+        "ci_high": 0.5952572144351097
+      }
+    },
+    "restatement": {
+      "retention_rate": {
+        "value": 0.9019607843137255,
+        "n": 102,
+        "ci_low": 0.8288700711192171,
+        "ci_high": 0.9458725631569088
+      },
+      "false_supersession_rate": {
+        "value": 0.09803921568627451,
+        "n": 102,
+        "ci_low": 0.05412743684309119,
+        "ci_high": 0.171129928880783
+      }
+    }
+  },
+  "write_latency_ms": {
+    "median": 1.2542084987217095,
+    "p95": 1.8552500005171169,
+    "n": 816
+  },
+  "user": "conflict-v2-39863b0d-c0a2-4879-9360-b22cb42e5e0d"
+}
