@@ -1,0 +1,5616 @@
+{
+  "workload": "conflict_v2_test",
+  "split": "test",
+  "queries": {
+    "58": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_078_new"
+      ],
+      "stale_ids": [
+        "test_reword_078_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "131": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_045_orig",
+        "test_restate_045_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "173": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_063_orig",
+        "test_restate_063_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "175": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_005_new"
+      ],
+      "stale_ids": [
+        "test_reword_005_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "176": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_051_orig",
+        "test_restate_051_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "177": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_088_new"
+      ],
+      "stale_ids": [
+        "test_same_088_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "187": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_084_orig",
+        "test_restate_084_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "194": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_065_orig",
+        "test_restate_065_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "211": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_009_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "231": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_001_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "242": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_056_orig",
+        "test_restate_056_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "257": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_092_orig",
+        "test_restate_092_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "259": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_101_new"
+      ],
+      "stale_ids": [
+        "test_reword_101_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "283": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_037_new"
+      ],
+      "stale_ids": [
+        "test_reword_037_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "287": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_046_new"
+      ],
+      "stale_ids": [
+        "test_same_046_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "303": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_077_orig",
+        "test_restate_077_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "304": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_079_new"
+      ],
+      "stale_ids": [
+        "test_same_079_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "305": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_096_new"
+      ],
+      "stale_ids": [
+        "test_same_096_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "309": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_009_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "312": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_023_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "316": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_054_new"
+      ],
+      "stale_ids": [
+        "test_reword_054_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "329": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_025_new"
+      ],
+      "stale_ids": [
+        "test_same_025_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "334": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_085_new"
+      ],
+      "stale_ids": [
+        "test_same_085_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "335": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_067_new"
+      ],
+      "stale_ids": [
+        "test_same_067_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "350": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_021_orig",
+        "test_restate_021_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "353": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_015_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "363": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_073_orig",
+        "test_restate_073_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "365": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_057_new"
+      ],
+      "stale_ids": [
+        "test_same_057_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "368": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_003_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "374": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_015_new"
+      ],
+      "stale_ids": [
+        "test_same_015_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "377": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_024_new"
+      ],
+      "stale_ids": [
+        "test_same_024_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "380": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_064_orig",
+        "test_restate_064_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "392": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_003_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "393": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_069_orig",
+        "test_restate_069_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "394": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_041_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "408": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_019_orig",
+        "test_restate_019_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "409": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_067_orig",
+        "test_restate_067_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "414": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_019_new"
+      ],
+      "stale_ids": [
+        "test_reword_019_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "419": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_046_new"
+      ],
+      "stale_ids": [
+        "test_reword_046_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "438": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_042_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "440": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_021_new"
+      ],
+      "stale_ids": [
+        "test_reword_021_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "446": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_015_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "449": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_024_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "451": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_098_new"
+      ],
+      "stale_ids": [
+        "test_reword_098_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "452": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_016_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "454": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_018_new"
+      ],
+      "stale_ids": [
+        "test_same_018_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "455": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_032_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "460": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_044_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "466": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_069_new"
+      ],
+      "stale_ids": [
+        "test_reword_069_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "471": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_043_new"
+      ],
+      "stale_ids": [
+        "test_same_043_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "472": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_048_new"
+      ],
+      "stale_ids": [
+        "test_same_048_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "481": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_049_new"
+      ],
+      "stale_ids": [
+        "test_reword_049_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "483": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_061_orig",
+        "test_restate_061_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "484": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_073_new"
+      ],
+      "stale_ids": [
+        "test_reword_073_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "487": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_032_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "490": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_016_new"
+      ],
+      "stale_ids": [
+        "test_reword_016_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "497": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_008_new"
+      ],
+      "stale_ids": [
+        "test_reword_008_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "505": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_023_new"
+      ],
+      "stale_ids": [
+        "test_reword_023_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "507": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_025_new"
+      ],
+      "stale_ids": [
+        "test_reword_025_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "508": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_064_new"
+      ],
+      "stale_ids": [
+        "test_same_064_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "512": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_032_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "515": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_056_new"
+      ],
+      "stale_ids": [
+        "test_same_056_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "516": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_007_orig",
+        "test_restate_007_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "524": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_006_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "534": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_100_new"
+      ],
+      "stale_ids": [
+        "test_same_100_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "538": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_051_new"
+      ],
+      "stale_ids": [
+        "test_reword_051_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "539": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_050_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "541": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_055_new"
+      ],
+      "stale_ids": [
+        "test_same_055_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "543": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_010_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "550": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_020_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "552": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_094_new"
+      ],
+      "stale_ids": [
+        "test_same_094_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "555": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_048_orig",
+        "test_restate_048_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "556": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_032_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "557": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_091_new"
+      ],
+      "stale_ids": [
+        "test_same_091_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "563": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_007_new"
+      ],
+      "stale_ids": [
+        "test_same_007_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "568": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_041_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "570": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_004_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "571": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_100_orig",
+        "test_restate_100_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "582": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_001_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "584": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_065_new"
+      ],
+      "stale_ids": [
+        "test_reword_065_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "588": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_026_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "591": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_060_new"
+      ],
+      "stale_ids": [
+        "test_same_060_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "599": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_027_new"
+      ],
+      "stale_ids": [
+        "test_reword_027_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "601": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_007_new"
+      ],
+      "stale_ids": [
+        "test_reword_007_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "603": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_015_orig",
+        "test_restate_015_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "607": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_016_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "610": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_077_new"
+      ],
+      "stale_ids": [
+        "test_same_077_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "613": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_055_new"
+      ],
+      "stale_ids": [
+        "test_reword_055_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "620": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_035_new"
+      ],
+      "stale_ids": [
+        "test_same_035_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "624": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_075_orig",
+        "test_restate_075_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "627": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_044_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "630": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_097_new"
+      ],
+      "stale_ids": [
+        "test_reword_097_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "631": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_078_new"
+      ],
+      "stale_ids": [
+        "test_same_078_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "638": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_058_new"
+      ],
+      "stale_ids": [
+        "test_reword_058_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "639": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_028_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "640": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_031_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "642": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_024_orig",
+        "test_restate_024_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "643": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_001_new"
+      ],
+      "stale_ids": [
+        "test_reword_001_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "644": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_028_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "645": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_050_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "646": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_031_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "649": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_083_orig",
+        "test_restate_083_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "650": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_018_new"
+      ],
+      "stale_ids": [
+        "test_reword_018_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "651": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_002_orig",
+        "test_restate_002_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "653": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_025_orig",
+        "test_restate_025_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "654": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_044_orig",
+        "test_restate_044_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "656": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_009_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "657": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_047_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "660": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_085_orig",
+        "test_restate_085_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "661": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_072_new"
+      ],
+      "stale_ids": [
+        "test_same_072_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "664": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_000_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "667": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_026_new"
+      ],
+      "stale_ids": [
+        "test_reword_026_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "669": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_086_new"
+      ],
+      "stale_ids": [
+        "test_same_086_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "670": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_005_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "673": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_084_new"
+      ],
+      "stale_ids": [
+        "test_same_084_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "674": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_074_new"
+      ],
+      "stale_ids": [
+        "test_same_074_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "675": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_025_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "677": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_012_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "680": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_070_new"
+      ],
+      "stale_ids": [
+        "test_reword_070_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "682": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_047_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "684": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_031_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "688": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_019_new"
+      ],
+      "stale_ids": [
+        "test_same_019_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "689": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_051_new"
+      ],
+      "stale_ids": [
+        "test_same_051_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "691": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_034_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "694": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_010_orig",
+        "test_restate_010_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "704": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_095_new"
+      ],
+      "stale_ids": [
+        "test_same_095_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "705": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_041_new"
+      ],
+      "stale_ids": [
+        "test_reword_041_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "706": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_044_new"
+      ],
+      "stale_ids": [
+        "test_reword_044_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "707": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_010_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "709": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_052_orig",
+        "test_restate_052_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "716": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_083_new"
+      ],
+      "stale_ids": [
+        "test_same_083_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "720": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_009_orig",
+        "test_restate_009_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "724": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_101_orig",
+        "test_restate_101_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "726": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_002_new"
+      ],
+      "stale_ids": [
+        "test_same_002_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "728": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_017_new"
+      ],
+      "stale_ids": [
+        "test_reword_017_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "733": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_007_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "734": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_072_new"
+      ],
+      "stale_ids": [
+        "test_reword_072_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "735": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_011_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "736": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_071_orig",
+        "test_restate_071_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "737": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_020_orig",
+        "test_restate_020_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "738": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_037_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "739": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_040_new"
+      ],
+      "stale_ids": [
+        "test_reword_040_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "743": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_074_new"
+      ],
+      "stale_ids": [
+        "test_reword_074_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "747": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_022_new"
+      ],
+      "stale_ids": [
+        "test_reword_022_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "749": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_080_new"
+      ],
+      "stale_ids": [
+        "test_reword_080_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "750": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_082_orig",
+        "test_restate_082_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "754": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_031_new"
+      ],
+      "stale_ids": [
+        "test_same_031_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "757": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_028_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "758": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_012_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "759": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_096_orig",
+        "test_restate_096_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "763": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_020_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "766": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_066_new"
+      ],
+      "stale_ids": [
+        "test_same_066_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "768": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_026_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "769": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_096_new"
+      ],
+      "stale_ids": [
+        "test_reword_096_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "773": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_035_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "774": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_059_new"
+      ],
+      "stale_ids": [
+        "test_reword_059_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "776": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_093_new"
+      ],
+      "stale_ids": [
+        "test_reword_093_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "777": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_036_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "778": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_015_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "779": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_018_orig",
+        "test_restate_018_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "781": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_017_orig",
+        "test_restate_017_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "782": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_005_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "783": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_004_orig",
+        "test_restate_004_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "785": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_071_new"
+      ],
+      "stale_ids": [
+        "test_same_071_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "786": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_031_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "789": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_016_new"
+      ],
+      "stale_ids": [
+        "test_same_016_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "790": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_028_new"
+      ],
+      "stale_ids": [
+        "test_same_028_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "794": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_022_orig",
+        "test_restate_022_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "795": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_094_new"
+      ],
+      "stale_ids": [
+        "test_reword_094_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "797": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_074_orig",
+        "test_restate_074_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "803": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_089_new"
+      ],
+      "stale_ids": [
+        "test_reword_089_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "804": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_006_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "805": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_024_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "808": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_095_new"
+      ],
+      "stale_ids": [
+        "test_reword_095_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "809": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_098_new"
+      ],
+      "stale_ids": [
+        "test_same_098_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "810": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_090_new"
+      ],
+      "stale_ids": [
+        "test_same_090_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "811": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_001_new"
+      ],
+      "stale_ids": [
+        "test_same_001_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "814": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_012_new"
+      ],
+      "stale_ids": [
+        "test_same_012_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "816": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_024_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "817": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_034_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "819": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_009_new"
+      ],
+      "stale_ids": [
+        "test_reword_009_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "826": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_083_new"
+      ],
+      "stale_ids": [
+        "test_reword_083_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "828": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_001_orig",
+        "test_restate_001_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "829": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_008_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "830": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_059_orig",
+        "test_restate_059_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "831": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_037_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "832": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_022_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "833": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_043_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "835": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_095_orig",
+        "test_restate_095_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "837": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_061_new"
+      ],
+      "stale_ids": [
+        "test_reword_061_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "839": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_080_new"
+      ],
+      "stale_ids": [
+        "test_same_080_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "840": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_048_new"
+      ],
+      "stale_ids": [
+        "test_reword_048_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "841": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_013_new"
+      ],
+      "stale_ids": [
+        "test_reword_013_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "844": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_016_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "847": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_068_new"
+      ],
+      "stale_ids": [
+        "test_same_068_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "848": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_010_new"
+      ],
+      "stale_ids": [
+        "test_reword_010_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "849": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_097_orig",
+        "test_restate_097_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "851": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_007_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "856": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_099_new"
+      ],
+      "stale_ids": [
+        "test_reword_099_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "858": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_047_new"
+      ],
+      "stale_ids": [
+        "test_same_047_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "859": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_089_orig",
+        "test_restate_089_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "860": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_033_new"
+      ],
+      "stale_ids": [
+        "test_same_033_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "862": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_026_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "865": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_000_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "866": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_009_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "867": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_000_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "869": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_054_orig",
+        "test_restate_054_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "870": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_029_orig",
+        "test_restate_029_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "871": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_031_new"
+      ],
+      "stale_ids": [
+        "test_reword_031_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "873": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_050_new"
+      ],
+      "stale_ids": [
+        "test_same_050_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "874": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_075_new"
+      ],
+      "stale_ids": [
+        "test_reword_075_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "875": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_018_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "877": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_097_new"
+      ],
+      "stale_ids": [
+        "test_same_097_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "878": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_026_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "881": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_057_orig",
+        "test_restate_057_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "883": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_049_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "884": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_003_new"
+      ],
+      "stale_ids": [
+        "test_same_003_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "887": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_006_new"
+      ],
+      "stale_ids": [
+        "test_reword_006_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "888": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_061_new"
+      ],
+      "stale_ids": [
+        "test_same_061_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "892": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_024_new"
+      ],
+      "stale_ids": [
+        "test_reword_024_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "895": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_039_orig",
+        "test_restate_039_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "896": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_007_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "897": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_100_new"
+      ],
+      "stale_ids": [
+        "test_reword_100_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "900": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_079_new"
+      ],
+      "stale_ids": [
+        "test_reword_079_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "901": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_040_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "902": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_029_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "906": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_041_new"
+      ],
+      "stale_ids": [
+        "test_same_041_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "907": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_039_new"
+      ],
+      "stale_ids": [
+        "test_reword_039_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "908": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_011_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "911": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_063_new"
+      ],
+      "stale_ids": [
+        "test_same_063_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "914": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_043_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "917": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_069_new"
+      ],
+      "stale_ids": [
+        "test_same_069_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "918": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_094_orig",
+        "test_restate_094_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "920": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_022_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "926": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_015_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "927": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_023_orig",
+        "test_restate_023_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "929": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_013_new"
+      ],
+      "stale_ids": [
+        "test_same_013_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "930": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_042_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "933": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_038_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "934": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_028_orig",
+        "test_restate_028_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "935": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_014_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "936": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_090_orig",
+        "test_restate_090_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "937": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_091_orig",
+        "test_restate_091_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "938": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_089_new"
+      ],
+      "stale_ids": [
+        "test_same_089_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "939": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_058_new"
+      ],
+      "stale_ids": [
+        "test_same_058_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "942": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_025_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "944": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_036_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "945": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_092_new"
+      ],
+      "stale_ids": [
+        "test_reword_092_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "946": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_030_new"
+      ],
+      "stale_ids": [
+        "test_reword_030_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "947": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_036_orig",
+        "test_restate_036_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "950": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_045_new"
+      ],
+      "stale_ids": [
+        "test_reword_045_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "954": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_056_new"
+      ],
+      "stale_ids": [
+        "test_reword_056_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "956": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_021_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "957": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_046_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "959": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_042_orig",
+        "test_restate_042_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "962": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_014_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "963": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_044_new"
+      ],
+      "stale_ids": [
+        "test_same_044_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "966": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_101_new"
+      ],
+      "stale_ids": [
+        "test_same_101_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "968": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_013_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "969": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_014_new"
+      ],
+      "stale_ids": [
+        "test_reword_014_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "971": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_038_orig",
+        "test_restate_038_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "972": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_050_new"
+      ],
+      "stale_ids": [
+        "test_reword_050_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "973": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_035_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "975": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_003_new"
+      ],
+      "stale_ids": [
+        "test_reword_003_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "977": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_053_orig",
+        "test_restate_053_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "978": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_081_new"
+      ],
+      "stale_ids": [
+        "test_reword_081_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "982": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_068_orig",
+        "test_restate_068_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "984": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_011_new"
+      ],
+      "stale_ids": [
+        "test_reword_011_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "987": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_042_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "988": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_044_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "989": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_017_new"
+      ],
+      "stale_ids": [
+        "test_same_017_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "991": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_013_orig",
+        "test_restate_013_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "992": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_038_new"
+      ],
+      "stale_ids": [
+        "test_same_038_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "996": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_082_new"
+      ],
+      "stale_ids": [
+        "test_same_082_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "997": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_015_new"
+      ],
+      "stale_ids": [
+        "test_reword_015_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "998": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_092_new"
+      ],
+      "stale_ids": [
+        "test_same_092_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "999": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_049_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1000": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_098_orig",
+        "test_restate_098_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "1001": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_008_new"
+      ],
+      "stale_ids": [
+        "test_same_008_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1002": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_027_new"
+      ],
+      "stale_ids": [
+        "test_same_027_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1003": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_042_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1004": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_060_new"
+      ],
+      "stale_ids": [
+        "test_reword_060_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1005": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_044_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1010": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_035_new"
+      ],
+      "stale_ids": [
+        "test_reword_035_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1011": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_060_orig",
+        "test_restate_060_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "1013": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_030_new"
+      ],
+      "stale_ids": [
+        "test_same_030_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1016": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_019_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1017": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_006_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1018": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_099_new"
+      ],
+      "stale_ids": [
+        "test_same_099_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1020": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_031_orig",
+        "test_restate_031_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "1022": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_081_orig",
+        "test_restate_081_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "1026": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_062_new"
+      ],
+      "stale_ids": [
+        "test_reword_062_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1027": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_053_new"
+      ],
+      "stale_ids": [
+        "test_reword_053_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1028": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_017_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1029": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_040_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1031": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_062_orig",
+        "test_restate_062_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "1033": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_030_orig",
+        "test_restate_030_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "1034": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_005_orig",
+        "test_restate_005_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "1036": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_013_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1037": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_034_new"
+      ],
+      "stale_ids": [
+        "test_reword_034_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1041": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_020_new"
+      ],
+      "stale_ids": [
+        "test_reword_020_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1042": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_020_new"
+      ],
+      "stale_ids": [
+        "test_same_020_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1043": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_027_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1045": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_005_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1046": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_072_orig",
+        "test_restate_072_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "1049": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_091_new"
+      ],
+      "stale_ids": [
+        "test_reword_091_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1050": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_043_orig",
+        "test_restate_043_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "1051": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_011_new"
+      ],
+      "stale_ids": [
+        "test_same_011_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1052": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_090_new"
+      ],
+      "stale_ids": [
+        "test_reword_090_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1053": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_055_orig",
+        "test_restate_055_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "1054": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_080_orig",
+        "test_restate_080_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "1056": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_085_new"
+      ],
+      "stale_ids": [
+        "test_reword_085_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1057": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_043_new"
+      ],
+      "stale_ids": [
+        "test_reword_043_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1058": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_014_new"
+      ],
+      "stale_ids": [
+        "test_same_014_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1059": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_087_orig",
+        "test_restate_087_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "1060": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_093_orig",
+        "test_restate_093_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "1061": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_004_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1062": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_041_orig",
+        "test_restate_041_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "1065": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_076_new"
+      ],
+      "stale_ids": [
+        "test_reword_076_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1067": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_062_new"
+      ],
+      "stale_ids": [
+        "test_same_062_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1069": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_019_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1072": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_016_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1073": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_035_orig",
+        "test_restate_035_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "1074": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_004_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1075": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_042_new"
+      ],
+      "stale_ids": [
+        "test_same_042_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1077": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_040_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1078": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_000_new"
+      ],
+      "stale_ids": [
+        "test_reword_000_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1079": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_009_new"
+      ],
+      "stale_ids": [
+        "test_same_009_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1080": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_005_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1082": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_078_orig",
+        "test_restate_078_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "1085": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_033_new"
+      ],
+      "stale_ids": [
+        "test_reword_033_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1086": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_029_new"
+      ],
+      "stale_ids": [
+        "test_reword_029_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1090": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_076_new"
+      ],
+      "stale_ids": [
+        "test_same_076_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1092": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_008_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1093": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_042_new"
+      ],
+      "stale_ids": [
+        "test_reword_042_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1096": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_086_orig",
+        "test_restate_086_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "1098": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_002_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1099": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_034_orig",
+        "test_restate_034_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "1100": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_040_new"
+      ],
+      "stale_ids": [
+        "test_same_040_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1101": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_088_new"
+      ],
+      "stale_ids": [
+        "test_reword_088_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1102": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_035_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1103": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_012_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1104": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_038_new"
+      ],
+      "stale_ids": [
+        "test_reword_038_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1105": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_036_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1106": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_027_orig",
+        "test_restate_027_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "1107": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_029_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1108": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_047_orig",
+        "test_restate_047_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "1109": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_006_new"
+      ],
+      "stale_ids": [
+        "test_same_006_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1110": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_004_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1111": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_000_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1112": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_040_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1113": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_002_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1115": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_030_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1116": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_049_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1117": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_018_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1118": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_049_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1119": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_021_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1124": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_026_new"
+      ],
+      "stale_ids": [
+        "test_same_026_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1126": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_000_new"
+      ],
+      "stale_ids": [
+        "test_same_000_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1127": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_079_orig",
+        "test_restate_079_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "1128": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_084_new"
+      ],
+      "stale_ids": [
+        "test_reword_084_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1130": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_058_orig",
+        "test_restate_058_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "1132": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_045_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1133": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_064_new"
+      ],
+      "stale_ids": [
+        "test_reword_064_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1134": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_027_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1137": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_087_new"
+      ],
+      "stale_ids": [
+        "test_reword_087_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1138": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_076_orig",
+        "test_restate_076_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "1139": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_027_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1140": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_049_new"
+      ],
+      "stale_ids": [
+        "test_same_049_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1141": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_036_new"
+      ],
+      "stale_ids": [
+        "test_reword_036_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1142": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_068_new"
+      ],
+      "stale_ids": [
+        "test_reword_068_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1144": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_002_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1145": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_070_new"
+      ],
+      "stale_ids": [
+        "test_same_070_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1146": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_070_orig",
+        "test_restate_070_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "1148": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_066_new"
+      ],
+      "stale_ids": [
+        "test_reword_066_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1150": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_073_new"
+      ],
+      "stale_ids": [
+        "test_same_073_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1151": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_025_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1153": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_077_new"
+      ],
+      "stale_ids": [
+        "test_reword_077_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1154": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_024_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1155": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_071_new"
+      ],
+      "stale_ids": [
+        "test_reword_071_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1156": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_021_new"
+      ],
+      "stale_ids": [
+        "test_same_021_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1157": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_028_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1158": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_081_new"
+      ],
+      "stale_ids": [
+        "test_same_081_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1160": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_046_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1165": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_019_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1166": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_035_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1167": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_002_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1168": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_003_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1169": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_034_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1170": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_013_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1171": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_017_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1172": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_006_orig",
+        "test_restate_006_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "1174": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_002_new"
+      ],
+      "stale_ids": [
+        "test_reword_002_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1175": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_027_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1176": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_033_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1177": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_093_new"
+      ],
+      "stale_ids": [
+        "test_same_093_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1179": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_041_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1180": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_065_new"
+      ],
+      "stale_ids": [
+        "test_same_065_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1181": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_063_new"
+      ],
+      "stale_ids": [
+        "test_reword_063_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1182": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_053_new"
+      ],
+      "stale_ids": [
+        "test_same_053_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1183": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_054_new"
+      ],
+      "stale_ids": [
+        "test_same_054_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1185": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_082_new"
+      ],
+      "stale_ids": [
+        "test_reword_082_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1186": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_007_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1187": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_043_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1188": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_010_new"
+      ],
+      "stale_ids": [
+        "test_same_010_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1189": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_032_new"
+      ],
+      "stale_ids": [
+        "test_same_032_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1190": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_041_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1191": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_025_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1195": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_023_new"
+      ],
+      "stale_ids": [
+        "test_same_023_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1196": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_039_new"
+      ],
+      "stale_ids": [
+        "test_same_039_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1197": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_030_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1198": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_047_new"
+      ],
+      "stale_ids": [
+        "test_reword_047_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1199": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_067_new"
+      ],
+      "stale_ids": [
+        "test_reword_067_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1200": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_086_new"
+      ],
+      "stale_ids": [
+        "test_reword_086_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1201": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_057_new"
+      ],
+      "stale_ids": [
+        "test_reword_057_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1203": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_003_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1205": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_034_new"
+      ],
+      "stale_ids": [
+        "test_same_034_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1206": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_006_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1207": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_099_orig",
+        "test_restate_099_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "1208": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_049_orig",
+        "test_restate_049_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "1209": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_018_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1210": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_045_new"
+      ],
+      "stale_ids": [
+        "test_same_045_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1211": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_047_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1212": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_016_orig",
+        "test_restate_016_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "1213": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_052_new"
+      ],
+      "stale_ids": [
+        "test_same_052_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1214": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_037_new"
+      ],
+      "stale_ids": [
+        "test_same_037_old"
+      ],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1215": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_008_orig",
+        "test_restate_008_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "1216": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_023_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1217": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_032_orig",
+        "test_restate_032_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "1218": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_021_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1219": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_000_orig",
+        "test_restate_000_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "1221": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_036_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1222": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_005_new"
+      ],
+      "stale_ids": [
+        "test_same_005_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1223": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_023_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1224": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_008_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1226": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_038_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1230": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_045_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1231": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_010_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1232": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_021_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1233": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_023_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1237": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_028_new"
+      ],
+      "stale_ids": [
+        "test_reword_028_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1238": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_013_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1239": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_039_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1240": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_001_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1242": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_039_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1244": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_043_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1245": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_038_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1246": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_022_new"
+      ],
+      "stale_ids": [
+        "test_same_022_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1248": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_004_new"
+      ],
+      "stale_ids": [
+        "test_same_004_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1249": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_001_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1251": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_012_new"
+      ],
+      "stale_ids": [
+        "test_reword_012_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1252": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_034_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1253": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_046_orig",
+        "test_restate_046_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "1254": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_088_orig",
+        "test_restate_088_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "1255": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_012_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1256": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_033_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1257": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_040_orig",
+        "test_restate_040_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "gym attended"
+    },
+    "1258": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_029_new"
+      ],
+      "stale_ids": [
+        "test_same_029_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1260": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_019_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1262": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_011_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1263": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_011_orig",
+        "test_restate_011_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "pet name"
+    },
+    "1264": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_052_new"
+      ],
+      "stale_ids": [
+        "test_reword_052_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1265": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_012_orig",
+        "test_restate_012_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "1266": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_020_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1267": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_022_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1268": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_017_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1269": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_059_new"
+      ],
+      "stale_ids": [
+        "test_same_059_old"
+      ],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1270": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_066_orig",
+        "test_restate_066_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "instrument played"
+    },
+    "1271": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_010_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1272": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_050_orig",
+        "test_restate_050_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "1273": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_017_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1274": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_038_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1275": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_011_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1277": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_036_new"
+      ],
+      "stale_ids": [
+        "test_same_036_old"
+      ],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1279": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_050_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1280": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_047_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1283": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_087_new"
+      ],
+      "stale_ids": [
+        "test_same_087_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1284": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_018_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1285": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_037_orig",
+        "test_restate_037_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "field studied"
+    },
+    "1286": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_014_orig",
+        "test_restate_014_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "1290": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_039_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1291": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_022_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1293": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_004_new"
+      ],
+      "stale_ids": [
+        "test_reword_004_old"
+      ],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1294": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "test_reword_032_new"
+      ],
+      "stale_ids": [
+        "test_reword_032_old"
+      ],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1297": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_029_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1298": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_048_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1299": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_048_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "pet name"
+    },
+    "1300": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_050_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1301": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_046_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1302": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_026_orig",
+        "test_restate_026_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "car driven"
+    },
+    "1303": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_030_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1304": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_033_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1305": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_020_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1306": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_030_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1307": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_046_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "gym attended"
+    },
+    "1308": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_029_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1309": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_033_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1311": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_008_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1313": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_039_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1314": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_014_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1316": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_033_orig",
+        "test_restate_033_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "1317": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_restate_003_orig",
+        "test_restate_003_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "language spoken at home"
+    },
+    "1318": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_014_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "car driven"
+    },
+    "1319": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "test_same_075_new"
+      ],
+      "stale_ids": [
+        "test_same_075_old"
+      ],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1320": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_048_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1321": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_048_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "instrument played"
+    },
+    "1322": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_045_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1323": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_037_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "field studied"
+    },
+    "1324": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_add_037_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    },
+    "1325": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "test_cross_045_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "language spoken at home"
+    }
+  }
+}

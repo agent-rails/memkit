@@ -1,0 +1,5616 @@
+{
+  "workload": "conflict_v2_dev",
+  "split": "dev",
+  "queries": {
+    "63": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_079_new"
+      ],
+      "stale_ids": [
+        "dev_same_079_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "78": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_092_new"
+      ],
+      "stale_ids": [
+        "dev_same_092_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "153": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_018_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "159": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_036_orig",
+        "dev_restate_036_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "194": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_031_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "212": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_044_new"
+      ],
+      "stale_ids": [
+        "dev_same_044_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "227": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_006_orig",
+        "dev_restate_006_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "234": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_071_new"
+      ],
+      "stale_ids": [
+        "dev_same_071_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "257": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_057_new"
+      ],
+      "stale_ids": [
+        "dev_reword_057_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "267": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_045_orig",
+        "dev_restate_045_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "297": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_052_new"
+      ],
+      "stale_ids": [
+        "dev_same_052_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "300": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_100_new"
+      ],
+      "stale_ids": [
+        "dev_reword_100_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "301": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_069_new"
+      ],
+      "stale_ids": [
+        "dev_same_069_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "304": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_020_orig",
+        "dev_restate_020_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "305": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_033_new"
+      ],
+      "stale_ids": [
+        "dev_reword_033_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "306": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_029_new"
+      ],
+      "stale_ids": [
+        "dev_same_029_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "307": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_017_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "313": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_005_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "315": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_005_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "316": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_020_new"
+      ],
+      "stale_ids": [
+        "dev_same_020_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "317": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_048_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "326": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_040_new"
+      ],
+      "stale_ids": [
+        "dev_reword_040_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "338": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_043_orig",
+        "dev_restate_043_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "342": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_011_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "351": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_042_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "354": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_058_orig",
+        "dev_restate_058_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "355": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_091_new"
+      ],
+      "stale_ids": [
+        "dev_same_091_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "358": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_001_new"
+      ],
+      "stale_ids": [
+        "dev_same_001_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "371": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_000_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "389": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_079_new"
+      ],
+      "stale_ids": [
+        "dev_reword_079_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "392": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_016_orig",
+        "dev_restate_016_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "394": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_098_orig",
+        "dev_restate_098_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "395": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_073_orig",
+        "dev_restate_073_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "397": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_053_new"
+      ],
+      "stale_ids": [
+        "dev_reword_053_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "401": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_016_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "402": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_067_orig",
+        "dev_restate_067_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "404": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_008_new"
+      ],
+      "stale_ids": [
+        "dev_same_008_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "416": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_012_new"
+      ],
+      "stale_ids": [
+        "dev_same_012_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "429": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_048_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "430": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_018_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "435": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_041_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "443": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_096_new"
+      ],
+      "stale_ids": [
+        "dev_reword_096_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "446": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_032_new"
+      ],
+      "stale_ids": [
+        "dev_reword_032_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "448": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_047_new"
+      ],
+      "stale_ids": [
+        "dev_same_047_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "452": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_085_new"
+      ],
+      "stale_ids": [
+        "dev_same_085_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "453": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_031_new"
+      ],
+      "stale_ids": [
+        "dev_same_031_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "454": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_080_orig",
+        "dev_restate_080_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "460": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_039_new"
+      ],
+      "stale_ids": [
+        "dev_same_039_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "461": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_030_orig",
+        "dev_restate_030_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "462": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_018_new"
+      ],
+      "stale_ids": [
+        "dev_reword_018_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "466": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_052_new"
+      ],
+      "stale_ids": [
+        "dev_reword_052_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "468": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_090_new"
+      ],
+      "stale_ids": [
+        "dev_reword_090_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "473": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_022_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "474": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_063_orig",
+        "dev_restate_063_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "476": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_063_new"
+      ],
+      "stale_ids": [
+        "dev_reword_063_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "481": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_042_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "484": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_084_orig",
+        "dev_restate_084_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "492": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_076_orig",
+        "dev_restate_076_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "497": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_069_new"
+      ],
+      "stale_ids": [
+        "dev_reword_069_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "502": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_087_new"
+      ],
+      "stale_ids": [
+        "dev_reword_087_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "503": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_017_new"
+      ],
+      "stale_ids": [
+        "dev_reword_017_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "506": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_056_new"
+      ],
+      "stale_ids": [
+        "dev_reword_056_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "507": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_010_new"
+      ],
+      "stale_ids": [
+        "dev_reword_010_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "509": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_023_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "514": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_047_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "519": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_032_orig",
+        "dev_restate_032_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "521": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_022_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "522": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_015_new"
+      ],
+      "stale_ids": [
+        "dev_same_015_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "527": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_014_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "540": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_053_orig",
+        "dev_restate_053_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "542": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_035_new"
+      ],
+      "stale_ids": [
+        "dev_reword_035_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "553": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_082_new"
+      ],
+      "stale_ids": [
+        "dev_reword_082_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "554": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_028_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "555": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_004_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "558": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_041_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "567": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_062_orig",
+        "dev_restate_062_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "570": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_066_orig",
+        "dev_restate_066_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "574": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_072_new"
+      ],
+      "stale_ids": [
+        "dev_same_072_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "575": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_021_orig",
+        "dev_restate_021_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "580": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_002_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "581": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_023_new"
+      ],
+      "stale_ids": [
+        "dev_reword_023_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "585": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_025_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "588": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_080_new"
+      ],
+      "stale_ids": [
+        "dev_reword_080_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "590": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_022_new"
+      ],
+      "stale_ids": [
+        "dev_same_022_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "592": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_049_new"
+      ],
+      "stale_ids": [
+        "dev_reword_049_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "593": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_052_orig",
+        "dev_restate_052_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "595": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_028_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "597": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_048_new"
+      ],
+      "stale_ids": [
+        "dev_same_048_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "599": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_027_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "601": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_025_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "602": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_053_new"
+      ],
+      "stale_ids": [
+        "dev_same_053_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "604": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_009_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "605": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_081_new"
+      ],
+      "stale_ids": [
+        "dev_reword_081_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "607": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_026_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "608": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_014_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "610": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_011_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "611": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_005_new"
+      ],
+      "stale_ids": [
+        "dev_same_005_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "612": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_000_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "613": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_098_new"
+      ],
+      "stale_ids": [
+        "dev_same_098_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "614": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_035_orig",
+        "dev_restate_035_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "615": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_064_new"
+      ],
+      "stale_ids": [
+        "dev_reword_064_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "624": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_075_orig",
+        "dev_restate_075_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "627": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_072_new"
+      ],
+      "stale_ids": [
+        "dev_reword_072_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "629": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_059_new"
+      ],
+      "stale_ids": [
+        "dev_reword_059_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "630": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_089_new"
+      ],
+      "stale_ids": [
+        "dev_same_089_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "633": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_032_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "634": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_065_new"
+      ],
+      "stale_ids": [
+        "dev_same_065_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "635": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_074_orig",
+        "dev_restate_074_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "638": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_036_new"
+      ],
+      "stale_ids": [
+        "dev_same_036_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "643": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_002_orig",
+        "dev_restate_002_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "645": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_081_orig",
+        "dev_restate_081_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "652": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_044_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "653": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_001_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "656": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_007_new"
+      ],
+      "stale_ids": [
+        "dev_reword_007_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "657": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_044_orig",
+        "dev_restate_044_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "658": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_050_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "661": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_015_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "662": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_042_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "664": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_021_new"
+      ],
+      "stale_ids": [
+        "dev_reword_021_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "665": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_042_new"
+      ],
+      "stale_ids": [
+        "dev_same_042_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "671": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_017_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "672": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_031_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "673": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_099_new"
+      ],
+      "stale_ids": [
+        "dev_same_099_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "675": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_009_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "681": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_068_new"
+      ],
+      "stale_ids": [
+        "dev_same_068_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "688": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_041_new"
+      ],
+      "stale_ids": [
+        "dev_reword_041_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "692": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_016_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "693": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_051_new"
+      ],
+      "stale_ids": [
+        "dev_reword_051_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "694": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_026_new"
+      ],
+      "stale_ids": [
+        "dev_reword_026_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "695": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_004_orig",
+        "dev_restate_004_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "697": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_028_new"
+      ],
+      "stale_ids": [
+        "dev_same_028_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "698": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_010_new"
+      ],
+      "stale_ids": [
+        "dev_same_010_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "704": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_060_new"
+      ],
+      "stale_ids": [
+        "dev_same_060_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "705": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_035_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "707": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_060_orig",
+        "dev_restate_060_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "708": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_018_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "710": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_039_new"
+      ],
+      "stale_ids": [
+        "dev_reword_039_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "713": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_026_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "714": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_034_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "718": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_023_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "721": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_040_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "724": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_043_new"
+      ],
+      "stale_ids": [
+        "dev_same_043_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "726": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_027_new"
+      ],
+      "stale_ids": [
+        "dev_same_027_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "727": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_087_orig",
+        "dev_restate_087_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "731": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_019_new"
+      ],
+      "stale_ids": [
+        "dev_same_019_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "735": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_038_new"
+      ],
+      "stale_ids": [
+        "dev_same_038_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "737": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_041_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "747": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_014_orig",
+        "dev_restate_014_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "753": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_078_orig",
+        "dev_restate_078_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "754": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_057_orig",
+        "dev_restate_057_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "760": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_011_orig",
+        "dev_restate_011_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "763": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_058_new"
+      ],
+      "stale_ids": [
+        "dev_same_058_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "766": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_019_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "769": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_082_new"
+      ],
+      "stale_ids": [
+        "dev_same_082_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "770": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_007_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "771": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_010_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "774": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_026_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "775": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_065_new"
+      ],
+      "stale_ids": [
+        "dev_reword_065_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "776": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_097_new"
+      ],
+      "stale_ids": [
+        "dev_same_097_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "779": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_009_new"
+      ],
+      "stale_ids": [
+        "dev_same_009_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "780": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_086_orig",
+        "dev_restate_086_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "783": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_002_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "784": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_088_new"
+      ],
+      "stale_ids": [
+        "dev_reword_088_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "785": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_015_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "786": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_018_new"
+      ],
+      "stale_ids": [
+        "dev_same_018_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "788": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_000_new"
+      ],
+      "stale_ids": [
+        "dev_same_000_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "789": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_032_new"
+      ],
+      "stale_ids": [
+        "dev_same_032_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "791": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_077_new"
+      ],
+      "stale_ids": [
+        "dev_reword_077_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "794": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_036_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "795": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_071_orig",
+        "dev_restate_071_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "796": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_096_orig",
+        "dev_restate_096_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "797": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_040_new"
+      ],
+      "stale_ids": [
+        "dev_same_040_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "802": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_067_new"
+      ],
+      "stale_ids": [
+        "dev_reword_067_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "804": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_027_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "805": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_036_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "806": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_027_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "807": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_092_new"
+      ],
+      "stale_ids": [
+        "dev_reword_092_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "819": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_040_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "820": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_036_new"
+      ],
+      "stale_ids": [
+        "dev_reword_036_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "824": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_092_orig",
+        "dev_restate_092_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "825": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_089_new"
+      ],
+      "stale_ids": [
+        "dev_reword_089_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "829": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_100_new"
+      ],
+      "stale_ids": [
+        "dev_same_100_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "830": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_016_new"
+      ],
+      "stale_ids": [
+        "dev_same_016_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "833": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_025_orig",
+        "dev_restate_025_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "834": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_084_new"
+      ],
+      "stale_ids": [
+        "dev_same_084_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "835": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_070_new"
+      ],
+      "stale_ids": [
+        "dev_same_070_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "840": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_072_orig",
+        "dev_restate_072_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "843": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_019_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "847": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_029_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "850": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_010_orig",
+        "dev_restate_010_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "852": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_017_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "855": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_017_new"
+      ],
+      "stale_ids": [
+        "dev_same_017_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "856": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_056_orig",
+        "dev_restate_056_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "858": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_062_new"
+      ],
+      "stale_ids": [
+        "dev_reword_062_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "859": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_070_orig",
+        "dev_restate_070_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "861": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_028_new"
+      ],
+      "stale_ids": [
+        "dev_reword_028_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "862": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_037_new"
+      ],
+      "stale_ids": [
+        "dev_same_037_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "864": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_030_new"
+      ],
+      "stale_ids": [
+        "dev_same_030_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "865": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_077_new"
+      ],
+      "stale_ids": [
+        "dev_same_077_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "866": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_013_new"
+      ],
+      "stale_ids": [
+        "dev_reword_013_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "867": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_043_new"
+      ],
+      "stale_ids": [
+        "dev_reword_043_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "868": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_024_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "870": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_041_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "871": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_025_new"
+      ],
+      "stale_ids": [
+        "dev_reword_025_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "875": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_044_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "877": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_077_orig",
+        "dev_restate_077_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "878": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_042_new"
+      ],
+      "stale_ids": [
+        "dev_reword_042_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "880": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_047_orig",
+        "dev_restate_047_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "881": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_028_orig",
+        "dev_restate_028_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "882": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_100_orig",
+        "dev_restate_100_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "885": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_041_orig",
+        "dev_restate_041_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "886": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_058_new"
+      ],
+      "stale_ids": [
+        "dev_reword_058_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "888": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_035_new"
+      ],
+      "stale_ids": [
+        "dev_same_035_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "889": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_049_orig",
+        "dev_restate_049_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "890": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_086_new"
+      ],
+      "stale_ids": [
+        "dev_reword_086_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "892": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_007_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "894": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_011_new"
+      ],
+      "stale_ids": [
+        "dev_same_011_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "895": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_039_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "898": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_032_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "900": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_045_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "901": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_016_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "903": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_046_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "904": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_091_orig",
+        "dev_restate_091_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "906": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_043_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "909": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_061_new"
+      ],
+      "stale_ids": [
+        "dev_reword_061_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "910": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_091_new"
+      ],
+      "stale_ids": [
+        "dev_reword_091_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "912": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_031_orig",
+        "dev_restate_031_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "913": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_082_orig",
+        "dev_restate_082_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "914": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_047_new"
+      ],
+      "stale_ids": [
+        "dev_reword_047_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "915": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_044_new"
+      ],
+      "stale_ids": [
+        "dev_reword_044_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "919": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_009_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "920": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_034_new"
+      ],
+      "stale_ids": [
+        "dev_reword_034_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "921": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_041_new"
+      ],
+      "stale_ids": [
+        "dev_same_041_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "923": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_093_orig",
+        "dev_restate_093_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "925": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_034_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "927": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_014_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "935": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_004_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "936": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_004_new"
+      ],
+      "stale_ids": [
+        "dev_reword_004_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "937": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_042_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "939": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_006_new"
+      ],
+      "stale_ids": [
+        "dev_reword_006_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "943": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_030_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "944": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_076_new"
+      ],
+      "stale_ids": [
+        "dev_same_076_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "948": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_054_new"
+      ],
+      "stale_ids": [
+        "dev_reword_054_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "949": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_029_new"
+      ],
+      "stale_ids": [
+        "dev_reword_029_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "950": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_035_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "953": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_034_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "955": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_004_new"
+      ],
+      "stale_ids": [
+        "dev_same_004_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "956": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_090_new"
+      ],
+      "stale_ids": [
+        "dev_same_090_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "959": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_027_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "960": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_078_new"
+      ],
+      "stale_ids": [
+        "dev_reword_078_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "961": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_044_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "964": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_024_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "965": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_023_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "970": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_050_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "971": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_008_new"
+      ],
+      "stale_ids": [
+        "dev_reword_008_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "972": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_008_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "975": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_019_orig",
+        "dev_restate_019_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "976": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_046_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "977": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_024_orig",
+        "dev_restate_024_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "980": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_027_orig",
+        "dev_restate_027_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "981": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_046_orig",
+        "dev_restate_046_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "982": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_029_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "983": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_075_new"
+      ],
+      "stale_ids": [
+        "dev_reword_075_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "984": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_011_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "985": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_007_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "986": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_101_new"
+      ],
+      "stale_ids": [
+        "dev_reword_101_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "987": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_098_new"
+      ],
+      "stale_ids": [
+        "dev_reword_098_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "988": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_073_new"
+      ],
+      "stale_ids": [
+        "dev_same_073_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "989": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_020_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "990": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_001_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "993": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_002_new"
+      ],
+      "stale_ids": [
+        "dev_same_002_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "995": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_088_orig",
+        "dev_restate_088_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "997": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_020_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "998": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_033_orig",
+        "dev_restate_033_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "1000": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_034_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1002": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_069_orig",
+        "dev_restate_069_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "1003": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_004_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1004": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_095_orig",
+        "dev_restate_095_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "1006": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_013_orig",
+        "dev_restate_013_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "1009": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_001_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1010": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_079_orig",
+        "dev_restate_079_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "1012": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_044_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1014": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_081_new"
+      ],
+      "stale_ids": [
+        "dev_same_081_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1016": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_033_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1018": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_024_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1019": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_049_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1021": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_012_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1025": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_005_new"
+      ],
+      "stale_ids": [
+        "dev_reword_005_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1026": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_004_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1027": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_018_orig",
+        "dev_restate_018_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "1029": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_026_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1031": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_025_new"
+      ],
+      "stale_ids": [
+        "dev_same_025_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1033": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_019_new"
+      ],
+      "stale_ids": [
+        "dev_reword_019_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1036": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_000_new"
+      ],
+      "stale_ids": [
+        "dev_reword_000_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1037": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_033_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1038": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_045_new"
+      ],
+      "stale_ids": [
+        "dev_same_045_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1039": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_049_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1041": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_039_orig",
+        "dev_restate_039_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "1043": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_065_orig",
+        "dev_restate_065_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "1045": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_094_new"
+      ],
+      "stale_ids": [
+        "dev_same_094_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1048": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_037_new"
+      ],
+      "stale_ids": [
+        "dev_reword_037_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1050": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_094_orig",
+        "dev_restate_094_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "1052": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_059_new"
+      ],
+      "stale_ids": [
+        "dev_same_059_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1053": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_015_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1056": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_080_new"
+      ],
+      "stale_ids": [
+        "dev_same_080_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1057": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_014_new"
+      ],
+      "stale_ids": [
+        "dev_reword_014_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1059": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_095_new"
+      ],
+      "stale_ids": [
+        "dev_reword_095_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1061": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_047_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1062": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_014_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1063": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_059_orig",
+        "dev_restate_059_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "1064": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_035_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1068": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_054_orig",
+        "dev_restate_054_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "1070": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_001_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1072": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_050_new"
+      ],
+      "stale_ids": [
+        "dev_same_050_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1073": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_047_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1075": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_043_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1077": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_060_new"
+      ],
+      "stale_ids": [
+        "dev_reword_060_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1078": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_067_new"
+      ],
+      "stale_ids": [
+        "dev_same_067_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1079": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_006_new"
+      ],
+      "stale_ids": [
+        "dev_same_006_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1080": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_013_new"
+      ],
+      "stale_ids": [
+        "dev_same_013_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1081": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_083_new"
+      ],
+      "stale_ids": [
+        "dev_same_083_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1082": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_026_orig",
+        "dev_restate_026_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "1083": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_010_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1085": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_013_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1087": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_039_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1090": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_090_orig",
+        "dev_restate_090_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "1091": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_056_new"
+      ],
+      "stale_ids": [
+        "dev_same_056_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1092": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_009_new"
+      ],
+      "stale_ids": [
+        "dev_reword_009_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1093": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_101_new"
+      ],
+      "stale_ids": [
+        "dev_same_101_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1094": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_032_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1095": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_075_new"
+      ],
+      "stale_ids": [
+        "dev_same_075_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1096": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_029_orig",
+        "dev_restate_029_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "1097": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_050_new"
+      ],
+      "stale_ids": [
+        "dev_reword_050_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1099": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_045_new"
+      ],
+      "stale_ids": [
+        "dev_reword_045_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1101": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_016_new"
+      ],
+      "stale_ids": [
+        "dev_reword_016_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1103": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_015_new"
+      ],
+      "stale_ids": [
+        "dev_reword_015_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1106": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_008_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1108": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_087_new"
+      ],
+      "stale_ids": [
+        "dev_same_087_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1109": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_007_new"
+      ],
+      "stale_ids": [
+        "dev_same_007_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1110": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_039_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1111": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_020_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1113": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_028_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1114": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_099_new"
+      ],
+      "stale_ids": [
+        "dev_reword_099_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1115": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_034_orig",
+        "dev_restate_034_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "1116": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_029_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1117": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_016_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1118": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_003_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1119": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_006_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1120": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_025_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1121": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_027_new"
+      ],
+      "stale_ids": [
+        "dev_reword_027_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1122": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_015_orig",
+        "dev_restate_015_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "1123": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_024_new"
+      ],
+      "stale_ids": [
+        "dev_reword_024_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1125": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_023_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1126": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_012_new"
+      ],
+      "stale_ids": [
+        "dev_reword_012_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1128": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_038_orig",
+        "dev_restate_038_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "1129": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_040_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1135": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_026_new"
+      ],
+      "stale_ids": [
+        "dev_same_026_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1136": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_055_new"
+      ],
+      "stale_ids": [
+        "dev_same_055_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1138": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_024_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1140": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_003_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1141": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_038_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1143": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_061_orig",
+        "dev_restate_061_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "1144": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_038_new"
+      ],
+      "stale_ids": [
+        "dev_reword_038_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1145": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_064_orig",
+        "dev_restate_064_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "1146": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_066_new"
+      ],
+      "stale_ids": [
+        "dev_reword_066_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1147": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_012_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1149": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_030_new"
+      ],
+      "stale_ids": [
+        "dev_reword_030_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1150": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_045_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1151": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_038_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1152": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_012_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1154": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_030_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1155": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_031_new"
+      ],
+      "stale_ids": [
+        "dev_reword_031_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1156": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_008_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1158": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_085_new"
+      ],
+      "stale_ids": [
+        "dev_reword_085_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1159": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_024_new"
+      ],
+      "stale_ids": [
+        "dev_same_024_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1160": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_046_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1161": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_003_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1162": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_014_new"
+      ],
+      "stale_ids": [
+        "dev_same_014_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1163": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_007_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1164": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_028_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1166": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_011_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1167": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_070_new"
+      ],
+      "stale_ids": [
+        "dev_reword_070_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1168": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_022_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1169": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_022_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1171": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_002_new"
+      ],
+      "stale_ids": [
+        "dev_reword_002_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1172": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_011_new"
+      ],
+      "stale_ids": [
+        "dev_reword_011_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1173": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_009_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1174": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_000_orig",
+        "dev_restate_000_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "1176": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_078_new"
+      ],
+      "stale_ids": [
+        "dev_same_078_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1177": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_074_new"
+      ],
+      "stale_ids": [
+        "dev_reword_074_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1179": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_005_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1180": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_003_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1181": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_020_new"
+      ],
+      "stale_ids": [
+        "dev_reword_020_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1182": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_071_new"
+      ],
+      "stale_ids": [
+        "dev_reword_071_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1184": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_042_orig",
+        "dev_restate_042_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "1185": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_020_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1186": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_003_orig",
+        "dev_restate_003_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "1187": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_073_new"
+      ],
+      "stale_ids": [
+        "dev_reword_073_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1188": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_097_new"
+      ],
+      "stale_ids": [
+        "dev_reword_097_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1189": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_005_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1190": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_010_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1193": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_094_new"
+      ],
+      "stale_ids": [
+        "dev_reword_094_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1196": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_003_new"
+      ],
+      "stale_ids": [
+        "dev_reword_003_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1198": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_062_new"
+      ],
+      "stale_ids": [
+        "dev_same_062_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1200": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_006_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1201": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_085_orig",
+        "dev_restate_085_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "1202": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_064_new"
+      ],
+      "stale_ids": [
+        "dev_same_064_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1203": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_084_new"
+      ],
+      "stale_ids": [
+        "dev_reword_084_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1204": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_047_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1205": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_054_new"
+      ],
+      "stale_ids": [
+        "dev_same_054_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1206": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_093_new"
+      ],
+      "stale_ids": [
+        "dev_reword_093_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1207": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_093_new"
+      ],
+      "stale_ids": [
+        "dev_same_093_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1208": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_040_orig",
+        "dev_restate_040_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "1209": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_046_new"
+      ],
+      "stale_ids": [
+        "dev_same_046_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1210": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_012_orig",
+        "dev_restate_012_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "1213": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_088_new"
+      ],
+      "stale_ids": [
+        "dev_same_088_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1214": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_001_new"
+      ],
+      "stale_ids": [
+        "dev_reword_001_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1215": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_005_orig",
+        "dev_restate_005_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "1216": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_015_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1217": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_083_new"
+      ],
+      "stale_ids": [
+        "dev_reword_083_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1220": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_068_new"
+      ],
+      "stale_ids": [
+        "dev_reword_068_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1221": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_003_new"
+      ],
+      "stale_ids": [
+        "dev_same_003_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1223": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_002_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1224": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_076_new"
+      ],
+      "stale_ids": [
+        "dev_reword_076_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1225": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_002_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1226": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_013_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1227": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_046_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1228": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_050_orig",
+        "dev_restate_050_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "1229": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_048_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1230": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_010_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1231": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_048_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1233": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_066_new"
+      ],
+      "stale_ids": [
+        "dev_same_066_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1234": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_017_orig",
+        "dev_restate_017_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "1235": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_046_new"
+      ],
+      "stale_ids": [
+        "dev_reword_046_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1236": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_045_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1237": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_040_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1238": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_055_orig",
+        "dev_restate_055_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "1239": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_048_orig",
+        "dev_restate_048_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "employer"
+    },
+    "1240": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_021_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1241": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_019_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1242": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_022_orig",
+        "dev_restate_022_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "project"
+    },
+    "1245": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_023_new"
+      ],
+      "stale_ids": [
+        "dev_same_023_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1246": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_068_orig",
+        "dev_restate_068_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "1248": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_038_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1250": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_025_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1253": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_035_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1254": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_083_orig",
+        "dev_restate_083_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "1256": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_038_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1257": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_045_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1258": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_001_orig",
+        "dev_restate_001_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "1259": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_012_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1261": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_021_new"
+      ],
+      "stale_ids": [
+        "dev_same_021_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1262": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_055_new"
+      ],
+      "stale_ids": [
+        "dev_reword_055_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1263": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_013_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1264": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_049_new"
+      ],
+      "stale_ids": [
+        "dev_same_049_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1265": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_018_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1266": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_023_orig",
+        "dev_restate_023_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "1267": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_037_orig",
+        "dev_restate_037_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "1268": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_006_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1269": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_034_new"
+      ],
+      "stale_ids": [
+        "dev_same_034_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1270": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_063_new"
+      ],
+      "stale_ids": [
+        "dev_same_063_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1271": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_049_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1272": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_039_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1273": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_007_orig",
+        "dev_restate_007_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "1274": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_089_orig",
+        "dev_restate_089_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "1275": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_013_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1276": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_051_new"
+      ],
+      "stale_ids": [
+        "dev_same_051_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1277": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_029_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1278": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_096_new"
+      ],
+      "stale_ids": [
+        "dev_same_096_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1279": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_008_orig",
+        "dev_restate_008_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "favorite drink"
+    },
+    "1280": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_037_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1281": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_043_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1282": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_022_new"
+      ],
+      "stale_ids": [
+        "dev_reword_022_old"
+      ],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1283": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_051_orig",
+        "dev_restate_051_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "1284": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_099_orig",
+        "dev_restate_099_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "1285": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_043_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1286": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_030_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1287": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_030_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1288": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_032_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1289": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_095_new"
+      ],
+      "stale_ids": [
+        "dev_same_095_old"
+      ],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1293": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_000_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1294": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_017_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1295": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_033_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1296": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_008_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1297": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_037_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1299": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_021_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1300": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_074_new"
+      ],
+      "stale_ids": [
+        "dev_same_074_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1301": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_049_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    },
+    "1302": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_006_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1303": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_036_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1304": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_019_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1305": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_021_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1306": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_097_orig",
+        "dev_restate_097_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "city"
+    },
+    "1308": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_101_orig",
+        "dev_restate_101_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "manager"
+    },
+    "1309": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_050_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1310": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_086_new"
+      ],
+      "stale_ids": [
+        "dev_same_086_old"
+      ],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1311": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_033_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1312": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_033_new"
+      ],
+      "stale_ids": [
+        "dev_same_033_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1313": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_000_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1314": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_021_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "manager"
+    },
+    "1315": {
+      "category": "update_reworded",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_reword_048_new"
+      ],
+      "stale_ids": [
+        "dev_reword_048_old"
+      ],
+      "match": "all_of",
+      "attribute": "employer"
+    },
+    "1316": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_037_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1317": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_036_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1318": {
+      "category": "cross_subject_same_value",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_cross_050_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1319": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_061_new"
+      ],
+      "stale_ids": [
+        "dev_same_061_old"
+      ],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1321": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_031_a"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "city"
+    },
+    "1322": {
+      "category": "update_same_frame",
+      "semantics": "update",
+      "expected_ids": [
+        "dev_same_057_new"
+      ],
+      "stale_ids": [
+        "dev_same_057_old"
+      ],
+      "match": "all_of",
+      "attribute": "editor"
+    },
+    "1323": {
+      "category": "restatement",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_restate_009_orig",
+        "dev_restate_009_again"
+      ],
+      "stale_ids": [],
+      "match": "any_of",
+      "attribute": "editor"
+    },
+    "1324": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_031_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "favorite drink"
+    },
+    "1325": {
+      "category": "additive_other_attribute",
+      "semantics": "retention",
+      "expected_ids": [
+        "dev_add_037_b"
+      ],
+      "stale_ids": [],
+      "match": "all_of",
+      "attribute": "project"
+    }
+  }
+}
