@@ -39,7 +39,14 @@ func buildEngine(getenv func(string) string) (*conflict.Engine, string, error) {
 		desc = "conflict resolver: Claude enabled (LLM judgment on ambiguous facts)"
 	case "ollama":
 		o := resolver.NewOllama(getenv("MEMKIT_OLLAMA_URL"), getenv("MEMKIT_OLLAMA_MODEL"))
-		engine.Resolver = o
+		switch ollamaMode := getenv("MEMKIT_OLLAMA_MODE"); ollamaMode {
+		case "", "pair":
+			engine.Resolver = resolver.PairOnly{Judge: o}
+		case "batch":
+			engine.Resolver = o
+		default:
+			return nil, "", fmt.Errorf("unknown MEMKIT_OLLAMA_MODE %q (want pair or batch)", ollamaMode)
+		}
 		engine.ConflictThreshold = ollamaCandidateThreshold
 		engine.MaxCandidates = defaultOllamaCandidates
 		desc = fmt.Sprintf("conflict resolver: Ollama %s at %s (local, one batched call over up to %d candidates)", o.Model, o.BaseURL, engine.MaxCandidates)

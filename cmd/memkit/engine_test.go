@@ -4,6 +4,7 @@ import (
 	"strings"
 	"testing"
 
+	conflict "github.com/voltagebots/conflict-lens"
 	"github.com/voltagebots/memkit/internal/resolver"
 )
 
@@ -36,18 +37,39 @@ func TestBuildEngine_OllamaWidensBandAndCandidates(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	o, ok := e.Resolver.(*resolver.Ollama)
-	if !ok || o.Model != "m" || o.BaseURL != "http://x:1" {
-		t.Fatalf("want configured Ollama resolver, got %T %+v", e.Resolver, o)
+	p, ok := e.Resolver.(resolver.PairOnly)
+	o, isOllama := p.Judge.(*resolver.Ollama)
+	if !ok || !isOllama || o.Model != "m" || o.BaseURL != "http://x:1" {
+		t.Fatalf("want a configured Ollama pair resolver, got %T", e.Resolver)
 	}
 	if e.ConflictThreshold != 0.1 || e.MaxCandidates != 10 {
 		t.Fatalf("want threshold 0.1 and 10 candidates, got %v %d", e.ConflictThreshold, e.MaxCandidates)
 	}
 }
 
+func TestBuildEngine_OllamaDefaultsToPairMode(t *testing.T) {
+	e, _, err := buildEngine(env(map[string]string{"MEMKIT_RESOLVER": "ollama"}))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, isMulti := e.Resolver.(conflict.MultiResolver); isMulti {
+		t.Fatal("pair mode must not expose the batched interface")
+	}
+}
+
+func TestBuildEngine_OllamaBatchModeExposesBatchedInterface(t *testing.T) {
+	e, _, err := buildEngine(env(map[string]string{"MEMKIT_RESOLVER": "ollama", "MEMKIT_OLLAMA_MODE": "batch"}))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, isMulti := e.Resolver.(conflict.MultiResolver); !isMulti {
+		t.Fatal("batch mode must expose the batched interface")
+	}
+}
+
 func TestBuildEngine_OllamaWinsOverClaudeKey(t *testing.T) {
 	e, _, err := buildEngine(env(map[string]string{"MEMKIT_RESOLVER": "ollama", "ANTHROPIC_API_KEY": "k"}))
-	if _, ok := e.Resolver.(*resolver.Ollama); err != nil || !ok {
+	if _, ok := e.Resolver.(resolver.PairOnly); err != nil || !ok {
 		t.Fatalf("explicit mode must win, got %T err=%v", e.Resolver, err)
 	}
 }
@@ -76,6 +98,7 @@ func TestBuildEngine_ThresholdOverride(t *testing.T) {
 func TestBuildEngine_InvalidConfigFailsFast(t *testing.T) {
 	cases := map[string]map[string]string{
 		"unknown mode":           {"MEMKIT_RESOLVER": "gpt"},
+		"unknown ollama mode":    {"MEMKIT_RESOLVER": "ollama", "MEMKIT_OLLAMA_MODE": "fast"},
 		"claude without key":     {"MEMKIT_RESOLVER": "claude"},
 		"max candidates not int": {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_MAX_CANDIDATES": "many"},
 		"max candidates zero":    {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_MAX_CANDIDATES": "0"},

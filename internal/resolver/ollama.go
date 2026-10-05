@@ -226,3 +226,13 @@ type ollamaChatResponse struct {
 		Content string `json:"content"`
 	} `json:"message"`
 }
+
+// PairOnly exposes only the single-candidate judgment of a resolver, so the engine
+// consults candidates one at a time, most similar first, instead of in one batch.
+type PairOnly struct {
+	Judge conflict.Resolver
+}
+
+func (p PairOnly) Resolve(newContent string, candidate conflict.Fact) (conflict.Action, string, error) {
+	return p.Judge.Resolve(newContent, candidate)
+}
