@@ -49,7 +49,7 @@ func buildEngine(getenv func(string) string) (*conflict.Engine, string, error) {
 		}
 		engine.ConflictThreshold = ollamaCandidateThreshold
 		engine.MaxCandidates = defaultOllamaCandidates
-		desc = fmt.Sprintf("conflict resolver: Ollama %s at %s (local, one batched call over up to %d candidates)", o.Model, o.BaseURL, engine.MaxCandidates)
+		desc = fmt.Sprintf("conflict resolver: Ollama %s at %s (local, %s mode, up to %d candidates)", o.Model, o.BaseURL, ollamaModeName(getenv("MEMKIT_OLLAMA_MODE")), engine.MaxCandidates)
 	default:
 		return nil, "", fmt.Errorf("unknown MEMKIT_RESOLVER %q (want none, claude or ollama)", mode)
 	}
@@ -78,4 +78,11 @@ func firstOf(getenv func(string) string, keys ...string) string {
 		}
 	}
 	return ""
+}
+
+func ollamaModeName(mode string) string {
+	if mode == "" {
+		return "pair"
+	}
+	return mode
 }
