@@ -225,3 +225,32 @@ func TestSearchFuzzNeverErrors(t *testing.T) {
 		}
 	}
 }
+
+func TestSearchFindsFactsContainingNonASCIIWhitespace(t *testing.T) {
+	s := mustOpen(t)
+	ctx := context.Background()
+	facts := map[string]string{
+		"emspace":   "note is  abc",
+		"nbsp":      "tag is  abc",
+		"ideograph": "label is 　abc",
+		"plain":     "city is Denver",
+	}
+	for id, content := range facts {
+		insert(t, s, id, content, time.Now())
+	}
+	for id, q := range map[string]string{"emspace": " abc", "nbsp": " abc", "ideograph": "　abc"} {
+		got, err := s.Search(ctx, "t", "u", q, SearchOpts{Limit: 3})
+		if err != nil {
+			t.Fatalf("%s: %v", id, err)
+		}
+		if len(got) == 0 || got[0].ID != id {
+			t.Fatalf("%s: query %q must find its own fact first, got %+v", id, q, got)
+		}
+	}
+}
+
+func TestEscapeFTSSplitsOnASCIISpaceOnly(t *testing.T) {
+	if got, want := escapeFTS("a b c"), "\"a b c\" OR \"a b\"* OR \"c\"*"; got != want {
+		t.Fatalf("got  %s\nwant %s", got, want)
+	}
+}

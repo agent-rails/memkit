@@ -362,8 +362,9 @@ func sortByScoreDesc(s []Scored) {
 //
 // The index uses the `porter ascii` tokenizer, which treats ASCII letters and
 // digits and every non-ASCII character as token characters and everything else as
-// a separator. The query is split the same way, so a query token is exactly an
-// indexed token. That removes every FTS5 operator character ('"', '*', '-', '^',
+// a separator. The query is split the same way, and only on the ASCII space the
+// mapping produces (not on Unicode whitespace, which the tokenizer keeps inside a
+// token), so a query token is exactly an indexed token. That removes every FTS5 operator character ('"', '*', '-', '^',
 // '(', ')', ':', '+', ...) and every punctuation mark typed in a question. Each
 // token is quoted so the bare words AND, OR, NOT and NEAR are searched as text,
 // not parsed as operators.
@@ -374,7 +375,7 @@ func escapeFTS(q string) string {
 		}
 		return ' '
 	}, q)
-	fields := strings.Fields(clean)
+	fields := strings.FieldsFunc(clean, func(r rune) bool { return r == ' ' })
 	if len(fields) == 0 {
 		return `""`
 	}
