@@ -107,8 +107,10 @@ func (o *Ollama) Resolve(newContent string, candidate conflict.Fact) (conflict.A
 }
 
 // ResolveAmong asks the local model which one of several candidates, if any, the
-// new fact replaces or repeats, in a single call. The returned index is into
-// candidates. An invalid answer is an error, never a guess. Implements
+// new fact replaces or repeats. The returned index is into candidates. The batch
+// call proposes; before anything is superseded or skipped, the single-pair judge
+// must reach the same verdict on the proposed candidate. If it disagrees the fact
+// is added. An invalid answer is an error, never a guess. Implements
 // conflict.MultiResolver.
 func (o *Ollama) ResolveAmong(newContent string, candidates []conflict.Fact) (conflict.Action, int, string, error) {
 	if len(candidates) == 0 {
@@ -123,7 +125,18 @@ func (o *Ollama) ResolveAmong(newContent string, candidates []conflict.Fact) (co
 	if err != nil {
 		return conflict.ActionAdd, -1, "", err
 	}
-	return parseBatchDecision(text, len(candidates))
+	act, idx, reason, err := parseBatchDecision(text, len(candidates))
+	if err != nil || act == conflict.ActionAdd {
+		return act, idx, reason, err
+	}
+	verdict, _, err := o.Resolve(newContent, candidates[idx])
+	if err != nil {
+		return conflict.ActionAdd, -1, "", err
+	}
+	if verdict != act {
+		return conflict.ActionAdd, -1, "verifier disagreed with the batch choice, keeping both facts", nil
+	}
+	return act, idx, reason, nil
 }
 
 func (o *Ollama) chat(system, user string) (string, error) {

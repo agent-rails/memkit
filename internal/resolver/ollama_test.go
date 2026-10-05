@@ -211,3 +211,76 @@ func TestOllamaAmong_ServerErrorIsReturned(t *testing.T) {
 func TestOllama_ImplementsMultiResolver(t *testing.T) {
 	var _ conflict.MultiResolver = (*Ollama)(nil)
 }
+
+func sequencedOllama(t *testing.T, batchBody, verifyBody string, calls *[]string) *httptest.Server {
+	t.Helper()
+	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		body, _ := io.ReadAll(r.Body)
+		var req map[string]any
+		_ = json.Unmarshal(body, &req)
+		msgs := req["messages"].([]any)
+		user := msgs[1].(map[string]any)["content"].(string)
+		reply := verifyBody
+		kind := "verify"
+		if strings.Contains(user, "EXISTING:\n1.") {
+			reply = batchBody
+			kind = "batch"
+		}
+		*calls = append(*calls, kind)
+		_ = json.NewEncoder(w).Encode(map[string]any{"message": map[string]any{"role": "assistant", "content": reply}})
+	}))
+}
+
+func TestOllamaAmong_UpdateIsVerifiedByThePairJudge(t *testing.T) {
+	var calls []string
+	srv := sequencedOllama(t, `{"action":"update","target":2,"reason":"b"}`, `{"action":"update","reason":"v"}`, &calls)
+	defer srv.Close()
+	act, idx, _, err := newOllama(srv.URL).ResolveAmong("n", candidates())
+	if err != nil || act != conflict.ActionUpdate || idx != 1 {
+		t.Fatalf("want a verified update of index 1, got %s %d %v", act, idx, err)
+	}
+	if len(calls) != 2 || calls[0] != "batch" || calls[1] != "verify" {
+		t.Fatalf("want batch then verify, got %v", calls)
+	}
+}
+
+func TestOllamaAmong_VerifierDisagreementKeepsBothFacts(t *testing.T) {
+	for _, verdict := range []string{`{"action":"add","reason":"different person"}`, `{"action":"duplicate","reason":"same"}`} {
+		var calls []string
+		srv := sequencedOllama(t, `{"action":"update","target":2,"reason":"b"}`, verdict, &calls)
+		act, _, reason, err := newOllama(srv.URL).ResolveAmong("n", candidates())
+		srv.Close()
+		if err != nil || act != conflict.ActionAdd || !strings.Contains(reason, "verif") {
+			t.Fatalf("disagreement must add, got %s %q %v", act, reason, err)
+		}
+	}
+}
+
+func TestOllamaAmong_VerifierFailureIsAnError(t *testing.T) {
+	var calls []string
+	srv := sequencedOllama(t, `{"action":"update","target":1,"reason":"b"}`, "not json", &calls)
+	defer srv.Close()
+	if _, _, _, err := newOllama(srv.URL).ResolveAmong("n", candidates()); err == nil {
+		t.Fatal("a verifier that cannot answer must be an error so the engine adds")
+	}
+}
+
+func TestOllamaAmong_AddIsNotVerified(t *testing.T) {
+	var calls []string
+	srv := sequencedOllama(t, `{"action":"add","target":null,"reason":"b"}`, `{"action":"update"}`, &calls)
+	defer srv.Close()
+	act, _, _, err := newOllama(srv.URL).ResolveAmong("n", candidates())
+	if err != nil || act != conflict.ActionAdd || len(calls) != 1 {
+		t.Fatalf("add needs no verification, got %s calls=%v err=%v", act, calls, err)
+	}
+}
+
+func TestOllamaAmong_VerifiedDuplicate(t *testing.T) {
+	var calls []string
+	srv := sequencedOllama(t, `{"action":"duplicate","target":1,"reason":"b"}`, `{"action":"duplicate","reason":"v"}`, &calls)
+	defer srv.Close()
+	act, idx, _, err := newOllama(srv.URL).ResolveAmong("n", candidates())
+	if err != nil || act != conflict.ActionDuplicate || idx != 0 {
+		t.Fatalf("want a verified duplicate of index 0, got %s %d %v", act, idx, err)
+	}
+}
