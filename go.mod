@@ -1,6 +1,6 @@
 module github.com/voltagebots/memkit
 
-go 1.26.4
+go 1.26.6
 
 require (
 	github.com/voltagebots/conflict-lens v0.1.0
