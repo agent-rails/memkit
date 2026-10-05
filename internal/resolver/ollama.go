@@ -5,14 +5,19 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
+	"log"
 	"net/http"
 	"strings"
 	"time"
+	"unicode"
 
 	conflict "github.com/voltagebots/conflict-lens"
 )
 
 const (
+	maxPromptRunes       = 300
+	maxResponseBytes     = 64 << 10
 	defaultOllamaURL     = "http://127.0.0.1:11434"
 	defaultOllamaModel   = "llama3.1:8b"
 	defaultOllamaTimeout = 30 * time.Second
@@ -98,7 +103,7 @@ func NewOllama(baseURL, model string) *Ollama {
 // Resolve asks the local model to classify the relationship. Errors are returned
 // so the engine decides what to do. Implements conflict.Resolver.
 func (o *Ollama) Resolve(newContent string, candidate conflict.Fact) (conflict.Action, string, error) {
-	user := fmt.Sprintf("EXISTING: %s\nNEW: %s", strings.TrimSpace(candidate.Content), strings.TrimSpace(newContent))
+	user := fmt.Sprintf("EXISTING: %s\nNEW: %s", promptText(candidate.Content), promptText(newContent))
 	text, err := o.chat(ollamaSystemPrompt, user)
 	if err != nil {
 		return conflict.ActionAdd, "", err
@@ -117,9 +122,9 @@ func (o *Ollama) ResolveAmong(newContent string, candidates []conflict.Fact) (co
 		return conflict.ActionAdd, -1, "", fmt.Errorf("ollama: no candidates")
 	}
 	var b strings.Builder
-	fmt.Fprintf(&b, "NEW: %s\nEXISTING:\n", strings.TrimSpace(newContent))
+	fmt.Fprintf(&b, "NEW: %s\nEXISTING:\n", promptText(newContent))
 	for i, c := range candidates {
-		fmt.Fprintf(&b, "%d. %s\n", i+1, strings.TrimSpace(c.Content))
+		fmt.Fprintf(&b, "%d. %s\n", i+1, promptText(c.Content))
 	}
 	text, err := o.chat(ollamaBatchSystemPrompt, b.String())
 	if err != nil {
@@ -137,6 +142,35 @@ func (o *Ollama) ResolveAmong(newContent string, candidates []conflict.Fact) (co
 		return conflict.ActionAdd, -1, "verifier disagreed with the batch choice, keeping both facts", nil
 	}
 	return act, idx, reason, nil
+}
+
+// promptText prepares stored text for the judge prompt. Stored facts are
+// untrusted, so every run of whitespace or control characters becomes one space,
+// which keeps a fact on a single line and stops it from imitating the prompt's own
+// structure (a fake NEW line, a fake numbered candidate), and the length is
+// capped. This reduces, and does not remove, the ability of a stored fact to
+// steer the judge.
+func promptText(s string) string {
+	var b strings.Builder
+	space := true
+	runes := 0
+	for _, r := range s {
+		if unicode.IsSpace(r) || unicode.IsControl(r) {
+			if !space {
+				b.WriteRune(' ')
+				space = true
+				runes++
+			}
+		} else {
+			b.WriteRune(r)
+			space = false
+			runes++
+		}
+		if runes >= maxPromptRunes {
+			break
+		}
+	}
+	return strings.TrimSpace(b.String())
 }
 
 func (o *Ollama) chat(system, user string) (string, error) {
@@ -167,7 +201,7 @@ func (o *Ollama) chat(system, user string) (string, error) {
 		return "", fmt.Errorf("ollama: status %d", resp.StatusCode)
 	}
 	var out ollamaChatResponse
-	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
+	if err := json.NewDecoder(io.LimitReader(resp.Body, maxResponseBytes)).Decode(&out); err != nil {
 		return "", err
 	}
 	if strings.TrimSpace(out.Message.Content) == "" {
@@ -233,6 +267,14 @@ type PairOnly struct {
 	Judge conflict.Resolver
 }
 
+// Resolve returns the judge's verdict. If the judge fails, the failure is logged
+// and the result is Add: a model that is down, slow or answering invalidly can
+// delay a write but can never cause an existing fact to be superseded.
 func (p PairOnly) Resolve(newContent string, candidate conflict.Fact) (conflict.Action, string, error) {
-	return p.Judge.Resolve(newContent, candidate)
+	act, reason, err := p.Judge.Resolve(newContent, candidate)
+	if err != nil {
+		log.Printf("conflict resolver: judge failed, keeping both facts: %v", err)
+		return conflict.ActionAdd, "judge failed, keeping both facts", nil
+	}
+	return act, reason, nil
 }

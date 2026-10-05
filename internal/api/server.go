@@ -23,6 +23,9 @@ type Server struct {
 	// auth maps an API key to a tenant ID. A request with no matching key is
 	// rejected. Keep small; swap for a DB-backed lookup at scale.
 	auth map[string]string
+	// writes serializes the read, judge and write sequence per tenant, user and
+	// category, so two writes cannot judge the same stale candidate.
+	writes keyedMutex
 }
 
 // New builds a Server. auth maps api-key → tenant-id.
@@ -87,6 +90,8 @@ func (s *Server) remember(w http.ResponseWriter, r *http.Request, tenant string)
 
 	// conflict-lens: compare against existing active facts in the same category.
 	if resolve {
+		unlock := s.writes.lock(tenant + "\x00" + user + "\x00" + category)
+		defer unlock()
 		existing, err := s.store.ActiveByCategory(ctx, tenant, user, category)
 		if err != nil {
 			writeErr(w, http.StatusInternalServerError, "lookup failed")

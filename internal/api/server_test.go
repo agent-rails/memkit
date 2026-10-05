@@ -5,7 +5,10 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"sync"
+	"sync/atomic"
 	"testing"
+	"time"
 
 	conflict "github.com/voltagebots/conflict-lens"
 	"github.com/voltagebots/memkit/internal/store"
@@ -175,5 +178,81 @@ func TestSearchEmptyResultIsAnArrayNotNull(t *testing.T) {
 	}
 	if len(memories) != 0 || out["count"] != float64(0) {
 		t.Fatalf("want empty array and count 0, got %v count=%v", memories, out["count"])
+	}
+}
+
+type countingResolver struct {
+	running, peak int32
+	delay         time.Duration
+}
+
+func (c *countingResolver) Resolve(string, conflict.Fact) (conflict.Action, string, error) {
+	n := atomic.AddInt32(&c.running, 1)
+	for {
+		p := atomic.LoadInt32(&c.peak)
+		if n <= p || atomic.CompareAndSwapInt32(&c.peak, p, n) {
+			break
+		}
+	}
+	time.Sleep(c.delay)
+	atomic.AddInt32(&c.running, -1)
+	return conflict.ActionAdd, "stub", nil
+}
+
+func serverWithResolver(t *testing.T, r conflict.Resolver) http.Handler {
+	t.Helper()
+	st, err := store.OpenSQLite(":memory:")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { st.Close() })
+	e := conflict.NewEngine()
+	e.Resolver = r
+	return New(st, e, map[string]string{"k": "acme"}).Handler()
+}
+
+func concurrentWrites(t *testing.T, h http.Handler, users []string) {
+	t.Helper()
+	for _, u := range users {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": u, "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	}
+	var wg sync.WaitGroup
+	for _, u := range users {
+		wg.Add(1)
+		go func(u string) {
+			defer wg.Done()
+			do(t, h, "POST", "/v1/memories", map[string]any{"user_id": u, "content": "User works at OpenAI as a backend engineer"})
+		}(u)
+	}
+	wg.Wait()
+}
+
+func TestRememberSerializesResolutionPerUser(t *testing.T) {
+	r := &countingResolver{delay: 30 * time.Millisecond}
+	h := serverWithResolver(t, r)
+	users := []string{"same", "same", "same"}
+	for i := 0; i < 3; i++ {
+		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "same", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	}
+	var wg sync.WaitGroup
+	for range users {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "same", "content": "User works at OpenAI as a backend engineer"})
+		}()
+	}
+	wg.Wait()
+	if r.peak != 1 {
+		t.Fatalf("resolution for one user must never overlap, peak=%d", r.peak)
+	}
+}
+
+func TestRememberDoesNotBlockDifferentUsers(t *testing.T) {
+	r := &countingResolver{delay: 150 * time.Millisecond}
+	h := serverWithResolver(t, r)
+	concurrentWrites(t, h, []string{"u1", "u2", "u3"})
+	if r.peak < 2 {
+		t.Fatalf("different users must be able to resolve in parallel, peak=%d", r.peak)
 	}
 }

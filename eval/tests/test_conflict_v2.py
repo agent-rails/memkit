@@ -10,6 +10,7 @@ from harness.workload_loader import load_synthetic_workload
 from scripts.run_conflict_v2 import UPDATE_CATEGORIES, format_table, run, score_conflict
 
 SYNTHETIC_DIR = Path(__file__).parent.parent / "data" / "synthetic"
+GEN_PATH = SYNTHETIC_DIR / "generate_conflict_v2.py"
 
 
 def _load_generator():
@@ -71,8 +72,31 @@ def _gold_by_query(workload, meta):
 
 
 @pytest.mark.parametrize("split", ["dev", "test"])
-def test_generator_is_deterministic(split):
-    assert gen.build_split(split) == gen.build_split(split)
+def test_generator_is_deterministic_across_processes(split):
+    import hashlib
+    import json
+    import os
+    import subprocess
+    import sys
+
+    code = (
+        "import hashlib, importlib.util, json, sys;"
+        f"spec = importlib.util.spec_from_file_location('g', {str(GEN_PATH)!r});"
+        "m = importlib.util.module_from_spec(spec); sys.modules['g'] = m; spec.loader.exec_module(m);"
+        f"print(hashlib.sha256(json.dumps(m.build_split({split!r}), sort_keys=True).encode()).hexdigest())"
+    )
+    digests = set()
+    for seed in ("1", "2", "random"):
+        env = {**os.environ, "PYTHONHASHSEED": seed}
+        out = subprocess.run([sys.executable, "-c", code], env=env, capture_output=True, text=True, check=True)
+        digests.add(out.stdout.strip())
+    committed = (
+        json.loads((SYNTHETIC_DIR / f"conflict_v2_{split}.json").read_text()),
+        json.loads((SYNTHETIC_DIR / f"conflict_v2_{split}.meta.json").read_text()),
+    )
+    committed_digest = hashlib.sha256(json.dumps(list(committed), sort_keys=True).encode()).hexdigest()
+    assert len(digests) == 1, "output depends on hash seed or process state"
+    assert digests == {committed_digest}, "committed files differ from a fresh generation"
 
 
 def test_dev_and_test_differ():
