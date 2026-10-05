@@ -1,0 +1,82 @@
+{
+  "split": "test",
+  "backend": "memkit",
+  "categories": {
+    "update_same_frame": {
+      "stale_rate": {
+        "value": 0.29411764705882354,
+        "n": 102,
+        "ci_low": 0.2144622923532573,
+        "ci_high": 0.38871830960287346
+      },
+      "update_recall": {
+        "value": 0.9803921568627451,
+        "n": 102,
+        "ci_low": 0.9313055678943739,
+        "ci_high": 0.9946063608746546
+      }
+    },
+    "update_reworded": {
+      "stale_rate": {
+        "value": 0.28431372549019607,
+        "n": 102,
+        "ci_low": 0.2058478204977063,
+        "ci_high": 0.3784366196468115
+      },
+      "update_recall": {
+        "value": 0.9215686274509803,
+        "n": 102,
+        "ci_low": 0.8528111615000344,
+        "ci_high": 0.959723796399317
+      }
+    },
+    "cross_subject_same_value": {
+      "retention_rate": {
+        "value": 0.9215686274509803,
+        "n": 102,
+        "ci_low": 0.8528111615000344,
+        "ci_high": 0.959723796399317
+      },
+      "false_supersession_rate": {
+        "value": 0.0784313725490196,
+        "n": 102,
+        "ci_low": 0.040276203600682924,
+        "ci_high": 0.14718883849996559
+      }
+    },
+    "additive_other_attribute": {
+      "retention_rate": {
+        "value": 0.9607843137254902,
+        "n": 102,
+        "ci_low": 0.9034734282412418,
+        "ci_high": 0.9846461769045611
+      },
+      "false_supersession_rate": {
+        "value": 0.0392156862745098,
+        "n": 102,
+        "ci_low": 0.015353823095438889,
+        "ci_high": 0.09652657175875834
+      }
+    },
+    "restatement": {
+      "retention_rate": {
+        "value": 0.9509803921568627,
+        "n": 102,
+        "ci_low": 0.8903407284663869,
+        "ci_high": 0.978882714867803
+      },
+      "false_supersession_rate": {
+        "value": 0.049019607843137254,
+        "n": 102,
+        "ci_low": 0.021117285132196968,
+        "ci_high": 0.1096592715336131
+      }
+    }
+  },
+  "write_latency_ms": {
+    "median": 4569.924354498653,
+    "p95": 5147.7952919995005,
+    "n": 816
+  },
+  "user": "conflict-v2-1669cfc0-a056-484c-ae78-a7b9decb552d"
+}

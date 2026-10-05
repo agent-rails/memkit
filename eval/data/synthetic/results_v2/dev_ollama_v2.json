@@ -1,0 +1,82 @@
+{
+  "split": "dev",
+  "backend": "memkit",
+  "categories": {
+    "update_same_frame": {
+      "stale_rate": {
+        "value": 0.0784313725490196,
+        "n": 102,
+        "ci_low": 0.040276203600682924,
+        "ci_high": 0.14718883849996559
+      },
+      "update_recall": {
+        "value": 0.5882352941176471,
+        "n": 102,
+        "ci_low": 0.4912158108035628,
+        "ci_high": 0.6788496455009526
+      }
+    },
+    "update_reworded": {
+      "stale_rate": {
+        "value": 0.058823529411764705,
+        "n": 102,
+        "ci_low": 0.02723526813965306,
+        "ci_high": 0.1224374503377698
+      },
+      "update_recall": {
+        "value": 0.8333333333333334,
+        "n": 102,
+        "ci_low": 0.7492107842584269,
+        "ci_high": 0.8932587173364094
+      }
+    },
+    "cross_subject_same_value": {
+      "retention_rate": {
+        "value": 0.21568627450980393,
+        "n": 102,
+        "ci_low": 0.14697094402656707,
+        "ci_high": 0.3050403634366611
+      },
+      "false_supersession_rate": {
+        "value": 0.7843137254901961,
+        "n": 102,
+        "ci_low": 0.6949596365633389,
+        "ci_high": 0.8530290559734329
+      }
+    },
+    "additive_other_attribute": {
+      "retention_rate": {
+        "value": 0.35294117647058826,
+        "n": 102,
+        "ci_low": 0.26707854330326647,
+        "ci_high": 0.4494790295225413
+      },
+      "false_supersession_rate": {
+        "value": 0.6470588235294118,
+        "n": 102,
+        "ci_low": 0.5505209704774588,
+        "ci_high": 0.7329214566967336
+      }
+    },
+    "restatement": {
+      "retention_rate": {
+        "value": 0.8137254901960784,
+        "n": 102,
+        "ci_low": 0.7272970187923337,
+        "ci_high": 0.8773801591792768
+      },
+      "false_supersession_rate": {
+        "value": 0.18627450980392157,
+        "n": 102,
+        "ci_low": 0.12261984082072329,
+        "ci_high": 0.27270298120766634
+      }
+    }
+  },
+  "write_latency_ms": {
+    "median": 874.5925000002899,
+    "p95": 935.6482080002024,
+    "n": 816
+  },
+  "user": "conflict-v2-f7e80bef-3bca-4726-9b9f-60404d974fd2"
+}

@@ -1,0 +1,82 @@
+{
+  "split": "dev",
+  "backend": "memkit",
+  "categories": {
+    "update_same_frame": {
+      "stale_rate": {
+        "value": 0.4215686274509804,
+        "n": 102,
+        "ci_low": 0.3302943233598245,
+        "ci_high": 0.518536382147273
+      },
+      "update_recall": {
+        "value": 0.7647058823529411,
+        "n": 102,
+        "ci_low": 0.6737161802309318,
+        "ci_high": 0.8364801886826144
+      }
+    },
+    "update_reworded": {
+      "stale_rate": {
+        "value": 0.5,
+        "n": 102,
+        "ci_low": 0.40474278556489024,
+        "ci_high": 0.5952572144351097
+      },
+      "update_recall": {
+        "value": 0.9607843137254902,
+        "n": 102,
+        "ci_low": 0.9034734282412418,
+        "ci_high": 0.9846461769045611
+      }
+    },
+    "cross_subject_same_value": {
+      "retention_rate": {
+        "value": 0.3431372549019608,
+        "n": 102,
+        "ci_low": 0.25820365661589834,
+        "ci_high": 0.43945775439829654
+      },
+      "false_supersession_rate": {
+        "value": 0.6568627450980392,
+        "n": 102,
+        "ci_low": 0.5605422456017035,
+        "ci_high": 0.7417963433841017
+      }
+    },
+    "additive_other_attribute": {
+      "retention_rate": {
+        "value": 0.6274509803921569,
+        "n": 102,
+        "ci_low": 0.5305983908791685,
+        "ci_high": 0.7150517126717983
+      },
+      "false_supersession_rate": {
+        "value": 0.37254901960784315,
+        "n": 102,
+        "ci_low": 0.28494828732820177,
+        "ci_high": 0.4694016091208316
+      }
+    },
+    "restatement": {
+      "retention_rate": {
+        "value": 0.9019607843137255,
+        "n": 102,
+        "ci_low": 0.8288700711192171,
+        "ci_high": 0.9458725631569088
+      },
+      "false_supersession_rate": {
+        "value": 0.09803921568627451,
+        "n": 102,
+        "ci_low": 0.05412743684309119,
+        "ci_high": 0.171129928880783
+      }
+    }
+  },
+  "write_latency_ms": {
+    "median": 1.4269795010477537,
+    "p95": 2.2111250000307336,
+    "n": 816
+  },
+  "user": "conflict-v2-d569e068-e88d-4fa1-97c2-83b284a4c356"
+}
