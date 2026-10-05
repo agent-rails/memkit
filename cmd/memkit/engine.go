@@ -10,7 +10,8 @@ import (
 
 const (
 	resolverConflictThreshold = 0.2
-	defaultOllamaCandidates   = 3
+	ollamaCandidateThreshold  = 0.1
+	defaultOllamaCandidates   = 10
 )
 
 // buildEngine selects the conflict engine from the environment. MEMKIT_RESOLVER
@@ -39,9 +40,9 @@ func buildEngine(getenv func(string) string) (*conflict.Engine, string, error) {
 	case "ollama":
 		o := resolver.NewOllama(getenv("MEMKIT_OLLAMA_URL"), getenv("MEMKIT_OLLAMA_MODEL"))
 		engine.Resolver = o
-		engine.ConflictThreshold = resolverConflictThreshold
+		engine.ConflictThreshold = ollamaCandidateThreshold
 		engine.MaxCandidates = defaultOllamaCandidates
-		desc = fmt.Sprintf("conflict resolver: Ollama %s at %s (local, top-%d candidates)", o.Model, o.BaseURL, engine.MaxCandidates)
+		desc = fmt.Sprintf("conflict resolver: Ollama %s at %s (local, one batched call over up to %d candidates)", o.Model, o.BaseURL, engine.MaxCandidates)
 	default:
 		return nil, "", fmt.Errorf("unknown MEMKIT_RESOLVER %q (want none, claude or ollama)", mode)
 	}
@@ -52,6 +53,13 @@ func buildEngine(getenv func(string) string) (*conflict.Engine, string, error) {
 			return nil, "", fmt.Errorf("MEMKIT_RESOLVER_MAX_CANDIDATES must be an integer >= 1, got %q", raw)
 		}
 		engine.MaxCandidates = n
+	}
+	if raw := getenv("MEMKIT_RESOLVER_THRESHOLD"); raw != "" {
+		v, err := strconv.ParseFloat(raw, 64)
+		if err != nil || v <= 0 || v >= engine.DupThreshold {
+			return nil, "", fmt.Errorf("MEMKIT_RESOLVER_THRESHOLD must be a number in (0, %.2f), got %q", engine.DupThreshold, raw)
+		}
+		engine.ConflictThreshold = v
 	}
 	return engine, desc, nil
 }

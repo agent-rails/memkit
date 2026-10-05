@@ -114,3 +114,100 @@ func TestOllama_UnreachableServerReturnsError(t *testing.T) {
 		t.Fatal("want an error for an unreachable server")
 	}
 }
+
+func candidates() []conflict.Fact {
+	return []conflict.Fact{
+		{ID: "a", Content: "Nadia Bellweather works at Harbor Partners"},
+		{ID: "b", Content: "Marisol Bellweather works at Cinder Labs"},
+		{ID: "c", Content: "Idris Okonkwo lives in Denver"},
+	}
+}
+
+func TestOllamaAmong_ParsesUpdateTarget(t *testing.T) {
+	srv := mockOllama(t, `{"action":"update","target":2,"reason":"same person new employer"}`, http.StatusOK, nil)
+	defer srv.Close()
+	act, idx, reason, err := newOllama(srv.URL).ResolveAmong("Marisol Bellweather works at Harbor Partners", candidates())
+	if err != nil || act != conflict.ActionUpdate || idx != 1 || !strings.Contains(reason, "same person") {
+		t.Fatalf("want update of index 1, got %s %d %q %v", act, idx, reason, err)
+	}
+}
+
+func TestOllamaAmong_AddNeedsNoTarget(t *testing.T) {
+	srv := mockOllama(t, `{"action":"add","target":null,"reason":"different person"}`, http.StatusOK, nil)
+	defer srv.Close()
+	act, _, _, err := newOllama(srv.URL).ResolveAmong("n", candidates())
+	if err != nil || act != conflict.ActionAdd {
+		t.Fatalf("want add, got %s %v", act, err)
+	}
+}
+
+func TestOllamaAmong_DuplicateTarget(t *testing.T) {
+	srv := mockOllama(t, `{"action":"duplicate","target":1,"reason":"same"}`, http.StatusOK, nil)
+	defer srv.Close()
+	act, idx, _, err := newOllama(srv.URL).ResolveAmong("n", candidates())
+	if err != nil || act != conflict.ActionDuplicate || idx != 0 {
+		t.Fatalf("want duplicate of index 0, got %s %d %v", act, idx, err)
+	}
+}
+
+func TestOllamaAmong_RequestNumbersCandidatesAndIsDeterministic(t *testing.T) {
+	var got map[string]any
+	srv := mockOllama(t, `{"action":"add","target":null,"reason":"x"}`, http.StatusOK, &got)
+	defer srv.Close()
+	if _, _, _, err := newOllama(srv.URL).ResolveAmong("NEW fact", candidates()); err != nil {
+		t.Fatal(err)
+	}
+	if got["format"] != "json" || got["stream"] != false {
+		t.Fatalf("format/stream wrong: %v", got)
+	}
+	opts, _ := got["options"].(map[string]any)
+	if opts["temperature"] != float64(0) {
+		t.Fatalf("temperature must be 0")
+	}
+	msgs, _ := got["messages"].([]any)
+	user := msgs[1].(map[string]any)["content"].(string)
+	for _, want := range []string{"NEW: NEW fact", "1. Nadia Bellweather works at Harbor Partners", "2. Marisol Bellweather works at Cinder Labs", "3. Idris Okonkwo lives in Denver"} {
+		if !strings.Contains(user, want) {
+			t.Fatalf("user message missing %q:\n%s", want, user)
+		}
+	}
+}
+
+func TestOllamaAmong_InvalidAnswersAreErrors(t *testing.T) {
+	cases := map[string]string{
+		"update without target":  `{"action":"update","target":null,"reason":"x"}`,
+		"target out of range":    `{"action":"update","target":9,"reason":"x"}`,
+		"target zero":            `{"action":"update","target":0,"reason":"x"}`,
+		"target negative":        `{"action":"duplicate","target":-1,"reason":"x"}`,
+		"unknown action":         `{"action":"merge","target":1,"reason":"x"}`,
+		"not json":               "they conflict",
+		"target is a string":     `{"action":"update","target":"two","reason":"x"}`,
+		"update with fractional": `{"action":"update","target":1.5,"reason":"x"}`,
+	}
+	for name, body := range cases {
+		srv := mockOllama(t, body, http.StatusOK, nil)
+		_, _, _, err := newOllama(srv.URL).ResolveAmong("n", candidates())
+		srv.Close()
+		if err == nil {
+			t.Fatalf("%s: want an error", name)
+		}
+	}
+}
+
+func TestOllamaAmong_EmptyCandidatesIsAnError(t *testing.T) {
+	if _, _, _, err := newOllama("http://127.0.0.1:1").ResolveAmong("n", nil); err == nil {
+		t.Fatal("want an error for no candidates")
+	}
+}
+
+func TestOllamaAmong_ServerErrorIsReturned(t *testing.T) {
+	srv := mockOllama(t, `{"action":"add"}`, http.StatusInternalServerError, nil)
+	defer srv.Close()
+	if _, _, _, err := newOllama(srv.URL).ResolveAmong("n", candidates()); err == nil {
+		t.Fatal("want an error on HTTP 500")
+	}
+}
+
+func TestOllama_ImplementsMultiResolver(t *testing.T) {
+	var _ conflict.MultiResolver = (*Ollama)(nil)
+}

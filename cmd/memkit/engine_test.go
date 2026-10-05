@@ -40,8 +40,8 @@ func TestBuildEngine_OllamaWidensBandAndCandidates(t *testing.T) {
 	if !ok || o.Model != "m" || o.BaseURL != "http://x:1" {
 		t.Fatalf("want configured Ollama resolver, got %T %+v", e.Resolver, o)
 	}
-	if e.ConflictThreshold != 0.2 || e.MaxCandidates != 3 {
-		t.Fatalf("want threshold 0.2 and 3 candidates, got %v %d", e.ConflictThreshold, e.MaxCandidates)
+	if e.ConflictThreshold != 0.1 || e.MaxCandidates != 10 {
+		t.Fatalf("want threshold 0.1 and 10 candidates, got %v %d", e.ConflictThreshold, e.MaxCandidates)
 	}
 }
 
@@ -66,12 +66,22 @@ func TestBuildEngine_MaxCandidatesOverride(t *testing.T) {
 	}
 }
 
+func TestBuildEngine_ThresholdOverride(t *testing.T) {
+	e, _, err := buildEngine(env(map[string]string{"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_THRESHOLD": "0.15"}))
+	if err != nil || e.ConflictThreshold != 0.15 {
+		t.Fatalf("want 0.15, got %v err=%v", e.ConflictThreshold, err)
+	}
+}
+
 func TestBuildEngine_InvalidConfigFailsFast(t *testing.T) {
 	cases := map[string]map[string]string{
 		"unknown mode":           {"MEMKIT_RESOLVER": "gpt"},
 		"claude without key":     {"MEMKIT_RESOLVER": "claude"},
 		"max candidates not int": {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_MAX_CANDIDATES": "many"},
 		"max candidates zero":    {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_MAX_CANDIDATES": "0"},
+		"threshold not number":   {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_THRESHOLD": "low"},
+		"threshold zero":         {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_THRESHOLD": "0"},
+		"threshold above dup":    {"MEMKIT_RESOLVER": "ollama", "MEMKIT_RESOLVER_THRESHOLD": "0.9"},
 	}
 	for name, c := range cases {
 		if _, _, err := buildEngine(env(c)); err == nil {
