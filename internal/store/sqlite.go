@@ -8,6 +8,7 @@ import (
 	"math"
 	"strings"
 	"time"
+	"unicode"
 
 	_ "modernc.org/sqlite" // pure-Go driver, no CGO → single static binary
 )
@@ -358,18 +359,19 @@ func sortByScoreDesc(s []Scored) {
 
 // escapeFTS turns a free-text query into a safe FTS5 MATCH expression: an exact
 // phrase OR'd with prefix tokens, so partial words still match.
+//
+// Every character that is not a letter or digit is treated as a separator, which
+// matches how FTS5's default tokenizer splits text. That removes every FTS5
+// operator character ('"', '*', '-', '^', '(', ')', ':', '+', and so on) and
+// every punctuation mark a person types in a question. Each token is quoted so
+// the bare words AND, OR, NOT and NEAR are searched as text, not parsed as
+// operators.
 func escapeFTS(q string) string {
 	clean := strings.Map(func(r rune) rune {
-		switch r {
-		// CORRECTED (live smoke test, 2026-08-12): a bareword FTS5 token
-		// containing '-' is a syntax error unless quoted -- any query with
-		// a hyphenated word ("on-call", "PR-4821") returned 500 instead of
-		// results. Handled the same way as the existing quote/asterisk
-		// characters: split into separate words rather than one token.
-		case '"', '*', '\'', '-':
-			return ' '
+		if unicode.IsLetter(r) || unicode.IsDigit(r) {
+			return r
 		}
-		return r
+		return ' '
 	}, q)
 	fields := strings.Fields(clean)
 	if len(fields) == 0 {
@@ -377,9 +379,9 @@ func escapeFTS(q string) string {
 	}
 	prefixed := make([]string, len(fields))
 	for i, f := range fields {
-		prefixed[i] = f + "*"
+		prefixed[i] = `"` + f + `"*`
 	}
-	return fmt.Sprintf(`"%s" OR %s`, strings.TrimSpace(clean), strings.Join(prefixed, " OR "))
+	return fmt.Sprintf(`"%s" OR %s`, strings.Join(fields, " "), strings.Join(prefixed, " OR "))
 }
 
 func orEmpty(m map[string]string) map[string]string {

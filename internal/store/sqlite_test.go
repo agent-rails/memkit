@@ -100,3 +100,50 @@ func TestSearchHandlesHyphenatedQuery(t *testing.T) {
 		t.Fatalf("want the on-call fact to match, got %+v", got)
 	}
 }
+
+func TestSearchNeverErrorsOnPunctuationOrFTSOperators(t *testing.T) {
+	s := mustOpen(t)
+	ctx := context.Background()
+	insert(t, s, "work", "Marisol Bellweather works at Harbor Partners", time.Now())
+
+	queries := []string{
+		"Where does Marisol Bellweather work?",
+		"What is Marisol's favorite drink?",
+		"Marisol (Bellweather): works at Harbor; Partners, right?",
+		"Marisol AND Bellweather", "Marisol OR Harbor", "NOT Marisol", "Marisol NEAR Harbor",
+		"AND", "OR", "NOT", "NEAR", "^Marisol", "Marisol +Harbor", "Mari*sol", `"Marisol`, `\`, "/", "a/b",
+		"!!!", "???", "...", "()", "{}", "[]", "@#$%", "émigré café", "日本語 works", "👍 Marisol",
+		"Fly.io", "C++", "snake_case_word", "tab\there", "new\nline",
+	}
+	for _, q := range queries {
+		if _, err := s.Search(ctx, "t", "u", q, SearchOpts{}); err != nil {
+			t.Fatalf("query %q must not error: %v", q, err)
+		}
+	}
+}
+
+func TestSearchFindsFactForNaturalQuestion(t *testing.T) {
+	s := mustOpen(t)
+	ctx := context.Background()
+	insert(t, s, "work", "Marisol Bellweather works at Harbor Partners", time.Now())
+	insert(t, s, "other", "Nadia Okonkwo lives in Denver", time.Now())
+
+	got, err := s.Search(ctx, "t", "u", "Where does Marisol Bellweather work?", SearchOpts{Limit: 5})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(got) == 0 || got[0].ID != "work" {
+		t.Fatalf("want the Marisol fact first, got %+v", got)
+	}
+}
+
+func TestEscapeFTSQuotesEveryTokenAndDropsPunctuation(t *testing.T) {
+	got := escapeFTS(`Who's on-call? AND "x"`)
+	want := `"Who s on call AND x" OR "Who"* OR "s"* OR "on"* OR "call"* OR "AND"* OR "x"*`
+	if got != want {
+		t.Fatalf("got  %s\nwant %s", got, want)
+	}
+	if escapeFTS("???") != `""` {
+		t.Fatalf("punctuation-only query must become an empty phrase, got %s", escapeFTS("???"))
+	}
+}
