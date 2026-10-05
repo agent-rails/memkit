@@ -410,7 +410,9 @@ func TestAbandonedResolutionsStillCountAgainstTheConcurrencyBound(t *testing.T) 
 	e.Resolver = r
 	srv := New(st, e, map[string]string{"k": "acme"})
 	srv.SetResolveBudget(40 * time.Millisecond)
-	srv.SetMaxConcurrentResolutions(1)
+	if err := srv.SetMaxConcurrentResolutions(1); err != nil {
+		t.Fatal(err)
+	}
 	h := srv.Handler()
 	for _, u := range []string{"a", "b"} {
 		do(t, h, "POST", "/v1/memories", map[string]any{"user_id": u, "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
@@ -427,5 +429,44 @@ func TestAbandonedResolutionsStillCountAgainstTheConcurrencyBound(t *testing.T) 
 	time.Sleep(100 * time.Millisecond)
 	if n := atomic.LoadInt32(&r.calls); n != 1 {
 		t.Fatalf("the second write must not start a model call while the abandoned one still runs, got %d calls", n)
+	}
+}
+
+type panickingResolver struct{}
+
+func (panickingResolver) Resolve(string, conflict.Fact) (conflict.Action, string, error) {
+	panic("model client exploded")
+}
+
+func TestAPanickingResolverCannotCrashTheProcess(t *testing.T) {
+	st, err := store.OpenSQLite(":memory:")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { st.Close() })
+	e := conflict.NewEngine()
+	e.Resolver = panickingResolver{}
+	srv := New(st, e, map[string]string{"k": "acme"})
+	srv.SetResolveBudget(time.Second)
+	h := srv.Handler()
+	do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at Google as a backend engineer", "resolve_conflicts": false})
+	code, out := do(t, h, "POST", "/v1/memories", map[string]any{"user_id": "u", "content": "User works at OpenAI as a backend engineer"})
+	if code != http.StatusCreated || out["action"] != "add" {
+		t.Fatalf("a panicking resolver must resolve to add, got %d %v", code, out)
+	}
+	if len(srv.slots) != 0 {
+		t.Fatalf("the slot must be released after a panic, %d still held", len(srv.slots))
+	}
+}
+
+func TestSetMaxConcurrentResolutionsRejectsNonPositiveValues(t *testing.T) {
+	srv := New(nil, conflict.NewEngine(), nil)
+	for _, n := range []int{0, -1} {
+		if err := srv.SetMaxConcurrentResolutions(n); err == nil {
+			t.Fatalf("%d must be rejected", n)
+		}
+	}
+	if err := srv.SetMaxConcurrentResolutions(3); err != nil || cap(srv.slots) != 3 {
+		t.Fatalf("a positive value must be accepted, got %v cap=%d", err, cap(srv.slots))
 	}
 }

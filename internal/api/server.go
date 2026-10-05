@@ -8,6 +8,8 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"errors"
+	"fmt"
+	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -40,7 +42,13 @@ func (s *Server) SetResolveBudget(d time.Duration) { s.resolveBudget = d }
 
 // SetMaxConcurrentResolutions bounds resolutions in flight when a budget is set.
 // Call it before serving.
-func (s *Server) SetMaxConcurrentResolutions(n int) { s.slots = make(chan struct{}, n) }
+func (s *Server) SetMaxConcurrentResolutions(n int) error {
+	if n < 1 {
+		return fmt.Errorf("max concurrent resolutions must be >= 1, got %d", n)
+	}
+	s.slots = make(chan struct{}, n)
+	return nil
+}
 
 func (s *Server) lockUser(ctx context.Context, tenant, user string) (func(), error) {
 	return s.writes.lock(ctx, tenant+"\x00"+user)
@@ -62,6 +70,12 @@ func (s *Server) resolveWithin(ctx context.Context, content string, facts []conf
 	done := make(chan conflict.Decision, 1)
 	go func() {
 		defer func() { <-s.slots }()
+		defer func() {
+			if r := recover(); r != nil {
+				log.Printf("conflict resolver panicked, keeping both facts: %v", r)
+				done <- conflict.Decision{Action: conflict.ActionAdd, Reason: "resolver panicked, keeping both facts"}
+			}
+		}()
 		done <- s.engine.Resolve(content, facts)
 	}()
 	select {
