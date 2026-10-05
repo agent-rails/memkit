@@ -14,10 +14,8 @@ import (
 	"syscall"
 	"time"
 
-	conflict "github.com/voltagebots/conflict-lens"
 	"github.com/voltagebots/memkit/internal/api"
 	"github.com/voltagebots/memkit/internal/maintenance"
-	"github.com/voltagebots/memkit/internal/resolver"
 	"github.com/voltagebots/memkit/internal/store"
 )
 
@@ -34,15 +32,11 @@ func main() {
 
 	auth := parseAPIKeys(os.Getenv("MEMKIT_API_KEYS"))
 
-	// Conflict engine. With a Claude API key present, attach the LLM resolver and
-	// widen the conflict band so short/ambiguous facts (which lexical overlap
-	// can't classify) are routed to it for semantic judgment.
-	engine := conflict.NewEngine()
-	if key := firstEnv("MEMKIT_ANTHROPIC_API_KEY", "ANTHROPIC_API_KEY"); key != "" {
-		engine.Resolver = resolver.NewClaude(key, os.Getenv("MEMKIT_RESOLVER_MODEL"))
-		engine.ConflictThreshold = 0.2
-		log.Print("conflict resolver: Claude enabled (LLM judgment on ambiguous facts)")
+	engine, resolverDesc, err := buildEngine(os.Getenv)
+	if err != nil {
+		log.Fatalf("conflict engine: %v", err)
 	}
+	log.Print(resolverDesc)
 	srv := api.New(st, engine, auth)
 
 	// Background consolidation: prune archived facts past retention.
@@ -102,16 +96,6 @@ func envOr(k, def string) string {
 		return v
 	}
 	return def
-}
-
-// firstEnv returns the first non-empty value among the given env keys.
-func firstEnv(keys ...string) string {
-	for _, k := range keys {
-		if v := os.Getenv(k); v != "" {
-			return v
-		}
-	}
-	return ""
 }
 
 // parseDuration parses a Go duration string (e.g. "1h", "720h"), falling back
