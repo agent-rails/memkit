@@ -8,7 +8,7 @@ import (
 	"math"
 	"strings"
 	"time"
-	"unicode"
+	"unicode/utf8"
 
 	_ "modernc.org/sqlite" // pure-Go driver, no CGO → single static binary
 )
@@ -360,15 +360,16 @@ func sortByScoreDesc(s []Scored) {
 // escapeFTS turns a free-text query into a safe FTS5 MATCH expression: an exact
 // phrase OR'd with prefix tokens, so partial words still match.
 //
-// Every character that is not a letter or digit is treated as a separator, which
-// matches how FTS5's default tokenizer splits text. That removes every FTS5
-// operator character ('"', '*', '-', '^', '(', ')', ':', '+', and so on) and
-// every punctuation mark a person types in a question. Each token is quoted so
-// the bare words AND, OR, NOT and NEAR are searched as text, not parsed as
-// operators.
+// The index uses the `porter ascii` tokenizer, which treats ASCII letters and
+// digits and every non-ASCII character as token characters and everything else as
+// a separator. The query is split the same way, so a query token is exactly an
+// indexed token. That removes every FTS5 operator character ('"', '*', '-', '^',
+// '(', ')', ':', '+', ...) and every punctuation mark typed in a question. Each
+// token is quoted so the bare words AND, OR, NOT and NEAR are searched as text,
+// not parsed as operators.
 func escapeFTS(q string) string {
 	clean := strings.Map(func(r rune) rune {
-		if unicode.IsLetter(r) || unicode.IsDigit(r) {
+		if r >= utf8.RuneSelf || r >= 'a' && r <= 'z' || r >= 'A' && r <= 'Z' || r >= '0' && r <= '9' {
 			return r
 		}
 		return ' '

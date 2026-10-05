@@ -2,6 +2,8 @@ package store
 
 import (
 	"context"
+	"math/rand"
+	"strings"
 	"testing"
 	"time"
 )
@@ -145,5 +147,81 @@ func TestEscapeFTSQuotesEveryTokenAndDropsPunctuation(t *testing.T) {
 	}
 	if escapeFTS("???") != `""` {
 		t.Fatalf("punctuation-only query must become an empty phrase, got %s", escapeFTS("???"))
+	}
+}
+
+func TestSearchFindsFactsWithNonASCIITokenCharacters(t *testing.T) {
+	s := mustOpen(t)
+	ctx := context.Background()
+	facts := map[string]string{
+		"combining": "nickname is éabc",
+		"joiner":    "code word is a‍bc",
+		"emoji":     "favorite is \U0001F525abc",
+		"circled":   "badge is ①abc",
+		"accent":    "dog is named Zoë",
+		"plain":     "city is Denver",
+	}
+	for id, content := range facts {
+		insert(t, s, id, content, time.Now())
+	}
+	queries := map[string]string{
+		"combining": "éabc",
+		"joiner":    "a‍bc",
+		"emoji":     "\U0001F525abc",
+		"circled":   "①abc",
+		"accent":    "Zoë",
+	}
+	for id, q := range queries {
+		got, err := s.Search(ctx, "t", "u", q, SearchOpts{Limit: 3})
+		if err != nil {
+			t.Fatalf("%s: %v", id, err)
+		}
+		if len(got) == 0 || got[0].ID != id {
+			t.Fatalf("%s: query %q must find its own fact first, got %+v", id, q, got)
+		}
+	}
+}
+
+func TestSearchJoinerQueryDoesNotMatchSplitTokens(t *testing.T) {
+	s := mustOpen(t)
+	ctx := context.Background()
+	insert(t, s, "joined", "code word is a‍bc", time.Now())
+	insert(t, s, "unrelated", "a is for apple and b is for banana", time.Now())
+	got, err := s.Search(ctx, "t", "u", "a‍bc", SearchOpts{Limit: 5})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(got) != 1 || got[0].ID != "joined" {
+		t.Fatalf("a token containing a joiner must stay one token, got %+v", got)
+	}
+}
+
+func TestEscapeFTSKeepsNonASCIIAndSplitsASCIIPunctuation(t *testing.T) {
+	want := "\"café bar \U0001F525x\" OR \"café\"* OR \"bar\"* OR \"\U0001F525x\"*"
+	if got := escapeFTS("café-bar? \U0001F525x"); got != want {
+		t.Fatalf("got  %s\nwant %s", got, want)
+	}
+}
+
+func TestSearchFuzzNeverErrors(t *testing.T) {
+	s := mustOpen(t)
+	ctx := context.Background()
+	insert(t, s, "work", "Marisol Bellweather works at Harbor Partners", time.Now())
+	alphabet := []rune("abcXYZ019 \t\n\"'*-^():+,;.?!/\\{}[]@#$%&=_~`|<>\u0000́‍①é日本\U0001F525‮")
+	words := []string{"AND", "OR", "NOT", "NEAR", "near/3", "col:", "\"", "*", "-", "^"}
+	r := rand.New(rand.NewSource(11))
+	for i := 0; i < 20000; i++ {
+		var b strings.Builder
+		for n := r.Intn(24); n > 0; n-- {
+			if r.Intn(6) == 0 {
+				b.WriteString(words[r.Intn(len(words))])
+				b.WriteRune(' ')
+				continue
+			}
+			b.WriteRune(alphabet[r.Intn(len(alphabet))])
+		}
+		if _, err := s.Search(ctx, "t", "u", b.String(), SearchOpts{}); err != nil {
+			t.Fatalf("query %q must not error: %v", b.String(), err)
+		}
 	}
 }
