@@ -59,7 +59,11 @@ Set `"resolve_conflicts": false` to store verbatim without conflict-lens.
 | `MEMKIT_CONSOLIDATE_INTERVAL` | `1h` | How often the maintenance loop runs |
 | `MEMKIT_SUPERSEDED_RETENTION` | `720h` | Archived (superseded) facts older than this are pruned |
 | `MEMKIT_ANTHROPIC_API_KEY` / `ANTHROPIC_API_KEY` | _(unset)_ | Enables the Claude conflict resolver |
-| `MEMKIT_RESOLVER_MODEL` | `claude-haiku-4-5-20251001` | Model for the resolver |
+| `MEMKIT_RESOLVER_MODEL` | `claude-haiku-4-5-20251001` | Model for the Claude resolver |
+| `MEMKIT_RESOLVER` | _(unset)_ | `none`, `claude` or `ollama`. Unset keeps the original behavior: Claude when an API key is present, otherwise the heuristic only. An unknown value stops startup. |
+| `MEMKIT_OLLAMA_URL` / `MEMKIT_OLLAMA_MODEL` | `http://127.0.0.1:11434` / `llama3.1:8b` | Local resolver endpoint and model |
+| `MEMKIT_OLLAMA_MODE` | `pair` | `pair` judges candidates one at a time. `batch` proposes one candidate in a single call and verifies it with the pair judge. |
+| `MEMKIT_RESOLVER_MAX_CANDIDATES` / `MEMKIT_RESOLVER_THRESHOLD` | `10` / `0.1` for Ollama | How many of the most word-similar facts the resolver may examine, and the minimum word overlap to qualify |
 
 ## Docker
 
@@ -78,9 +82,15 @@ A background loop prunes superseded facts older than `MEMKIT_SUPERSEDED_RETENTIO
 
 The conflict engine is its own dependency-free module — [`github.com/agent-rails/conflict-lens`](https://github.com/agent-rails/conflict-lens) — so it's reusable outside memkit. It applies a token-overlap heuristic (add / update / duplicate) with an optional `Resolver` hook for LLM-grade semantic resolution of ambiguous cases. See [docs/DESIGN.md](docs/DESIGN.md).
 
-### Claude resolver (optional)
+### Resolvers (optional)
 
-Set an Anthropic API key and memkit attaches a Claude-backed resolver and widens the conflict band so short/ambiguous facts are sent for semantic judgment — closing the lexical blind spot ("I love my job" → "I hate my job"). The resolver is consulted **only** for borderline cases (clear adds/duplicates/conflicts stay on the free heuristic), the system prompt is prompt-cached, and it uses a small fast model. On any API error the engine falls back to the heuristic. Implementation: [`internal/resolver`](internal/resolver).
+The heuristic alone is fast but blunt. On a held-out evaluation ([`eval/EVAL_V2.md`](eval/EVAL_V2.md), synthetic data, one local model) it wrongly replaced another person's fact in 72% of cases and another attribute of the same person in 50%, because it counts the shared name as overlap.
+
+**Local resolver (Ollama).** `MEMKIT_RESOLVER=ollama` sends the most word-similar candidates to a local model, one at a time, most similar first, and asks whether the new fact replaces, repeats, or only adds to each. No paid API and no data leaves the machine. On the same held-out data, wrongful replacement fell to 4% to 8%, at about 4.6 seconds per write. It did **not** reduce stale answers in general (29% and 28% against the heuristic's 16% and 33%), because the right fact is often not among the candidates the word-overlap search offers. If the model fails or gives an invalid answer, the fact is added and nothing is superseded.
+
+**Claude resolver.** Set an Anthropic API key and memkit attaches a Claude-backed resolver and widens the conflict band so short or ambiguous facts get a semantic judgment ("I love my job" to "I hate my job"). It is consulted only in the borderline band, the system prompt is cached, and on an API error the engine falls back to the heuristic. Its prompt has no check that the two facts are about the same subject, and it has not been evaluated on the held-out data.
+
+Implementation: [`internal/resolver`](internal/resolver).
 
 ## Use from Claude Code / any MCP client
 
